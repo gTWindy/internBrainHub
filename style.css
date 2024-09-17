@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    height: 100vh; /* Устанавливаем высоту body равной высоте экрана */
+    overflow: hidden; /* Скрываем часть изображения, выходящую за пределы экрана */
+    background-image: url('bg/bg-768.png'); /* фон для малых экранов */
+    background-size: cover; /* чтобы изображение полностью заполняло экран */
+    background-position: top; /* Показываем верхнюю часть изображения */
+}
+
+@media (min-width: 1024px) {
+    body {
+        background-image: url('bg/bg-1024.png'); /* фон для средних экранов */
+    }
+}
+
+@media (min-width: 1440px) {
+    body {
+        background-image: url('bg/bg-1440.png'); /* фон для больших экранов */
+    }
+}
+
+.text-button {
+    position: absolute;
+    left: 130px; /* Прилепить к правому краю */
+    top: 88; /* Прилепить к верхнему краю */
+    background: none; /* Убираем фон */
+    border: none; /* Убираем рамку */
+    background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
+    -webkit-background-clip: text; /* Для WebKit-браузеров */
+    color: transparent; /* Делаем текст прозрачным */
+    background-clip: text; /* Для остальных браузеров */
+    text-decoration: underline; /* Подчеркивание текста */
+    cursor: pointer; /* Указатель мыши */
+    padding: 0; /* Убираем отступы */
+    margin: 0; /* Убираем внешние отступы */
+    font-family: 'Crimson Text', serif; /* Указываем шрифт */
+    font-size: 26px;
+}
+
+.text-button:hover {
+    color: darkblue; /* Меняем цвет при наведении */
+}
+
+.image-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.image-button img {
+    width: 100px;  /* Укажите нужный размер */
+    height: auto;  /* Автоматическое изменение высоты */
+}
+
+#left-button 
+{
+    position: absolute;
+    left: 130px; /* Прилепить к правому краю */
+    top: 88; /* Прилепить к верхнему краю */
+    background: none; /* Убираем фон */
+    border: none; /* Убираем рамку */
+    background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
+    -webkit-background-clip: text; /* Для WebKit-браузеров */
+    color: transparent; /* Делаем текст прозрачным */
+    background-clip: text; /* Для остальных браузеров */
+    text-decoration: underline; /* Подчеркивание текста */
+    cursor: pointer; /* Указатель мыши */
+    padding: 0; /* Убираем отступы */
+    margin: 0; /* Убираем внешние отступы */
+    font-family: 'Crimson Text', serif; /* Указываем шрифт */
+    font-size: 26px;
+}
+
+#right-button 
+{
+    position: absolute;
+    right: 130px; /* Прилепить к правому краю */
+    top: 88; /* Прилепить к верхнему краю */
+    width: 100px; /* Укажите нужный размер */
+    height: auto; /* Автоматическое изменение высоты */
+}
+
+.container {
+    text-align: center;
+}
+
+.main-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10%;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.rounded-image {
+    width: 200px;          /* Ширина кружка */
+    height: 200px;         /* Высота кружка (должна быть равна ширине для круга) */
+    border-radius: 50%;    /* Закругление углов для создания круга */
+    overflow: hidden;       /* Скрыть части изображения, выходящие за пределы */
+    display: flex;              /* Используем flexbox для центрирования */
+    justify-content: center;    /* Центрирование по горизонтали */
+    align-items: center;        /* Центрирование по вертикали */
+}
+
+.state-image
+{
+    max-width: 10%;
+    height: auto;
+    border-radius: 50%; /* Для округления картинки */
+    overflow: hidden; /* Для обрезки содержимого, выходящего за рамки */
+    border: 2px solid transparent; /* Ширина бордера, цвет - прозрачный */
+    border-color: #DBAE64; /* Устанавливает цвет */
+}
+
+.state-image-center {
+    max-width: 10%;
+    height: auto;
+    border-radius: 50%; /* Для округления картинки */
+    overflow: hidden; /* Для обрезки содержимого, выходящего за рамки */
+    border: 2px solid transparent; /* Ширина бордера, цвет - прозрачный */
+    border-color: #DBAE64; /* Устанавливает цвет фиолетовый */
+    margin: 0 20px; /* 0 сверху и снизу, 20px слева и справа */
+}
