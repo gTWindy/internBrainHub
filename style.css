@@ -2,21 +2,13 @@ body {
     margin: 0;
     height: 100vh; /* Устанавливаем высоту body равной высоте экрана */
     overflow: hidden; /* Скрываем часть изображения, выходящую за пределы экрана */
-    background-image: url('bg/bg-768.png'); /* фон для малых экранов */
+    background-image: url('bg/bg.png');
     background-size: cover; /* чтобы изображение полностью заполняло экран */
     background-position: top; /* Показываем верхнюю часть изображения */
 }
 
-@media (min-width: 1024px) {
-    body {
-        background-image: url('bg/bg-1024.png'); /* фон для средних экранов */
-    }
-}
-
-@media (min-width: 1440px) {
-    body {
-        background-image: url('bg/bg-1440.png'); /* фон для больших экранов */
-    }
+.container {
+    text-align: center;
 }
 
 .text
@@ -71,7 +63,7 @@ body {
 {
     position: absolute;
     left: 130px; /* Прилепить к правому краю */
-    top: 88; /* Прилепить к верхнему краю */
+    top: 88px; /* Прилепить к верхнему краю */
     background: none; /* Убираем фон */
     border: none; /* Убираем рамку */
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
@@ -90,25 +82,27 @@ body {
 {
     position: absolute;
     right: 130px; /* Прилепить к правому краю */
-    top: 88; /* Прилепить к верхнему краю */
+    top: 88px; /* Прилепить к верхнему краю */
     width: 100px; /* Укажите нужный размер */
     height: auto; /* Автоматическое изменение высоты */
 }
+
+#main
+{
+    display: flex;         /* Используем flexbox */
+    flex-direction: column; /* Располагаем элементы сверху вниз */
+    align-items: center
+}
+
 .row {
-    width: 100%; /* или задайте фиксированную ширину, например, 800px */
-    max-width: 800px; /* максимальная ширина блока */
-    margin: 0 auto; /* центрирует блок по горизонтали */
-    padding: 20px; /* отступы внутри блока, при желании */
     display: flex;
-    justify-content: center;
-    
+    flex-wrap: wrap; /* Позволяет элементам переходить на новую строку */
+    justify-content: center; /* Центрирует элементы по горизонтали */
 }
 .block {
-    text-align: center; /* Центрируем содержимое */
-    margin-top: 20px; /* Отступ сверху */
-    display: inline-block;
-    align-items: center; /* Центрирует по вертикали */
-    width: fit-content; /* Ширина равна содержимому */
+    flex: 0 0 auto; /* Не позволяет элементам сжиматься */
+    width: 200px; /* Ширина элемента (можете изменить по вашим требованиям) */
+    margin: 10px; /* Отступы между элементами */
 }
 .button {
     padding: 10px 20px; /* Отступы кнопки */
@@ -122,9 +116,6 @@ body {
 }
 
 
-.container {
-    text-align: center;
-}
 
 .main-image {
     max-width: 100%;

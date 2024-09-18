@@ -1,3 +1,5 @@
+let parent = null;
+
 function updateButtonVisibility(isNotVisible) {
     const leftButton = document.getElementById('left-button');
     const rightButton = document.getElementById('right-button');
@@ -25,6 +27,15 @@ function findStates()
 const rightButton = document.getElementById('right-button');
 rightButton.addEventListener('click', goHome);
 
+const leftButton = document.getElementById('left-button');
+leftButton.addEventListener('click', ()=>{
+    if (parent)
+        transformState(parent);
+    else
+        goHome();
+});
+
+
 function addPersonCard(element, div)
 {
     const newDiv = document.createElement('div');
@@ -49,20 +60,32 @@ function addPersonCard(element, div)
 function goHome()
 {
     updateButtonVisibility(false);
-    let pic = document.querySelector('.main-image');
+    let pic = document.getElementById('mainPic');
     if (pic) {
         console.log(pic.src); // Выведет URL первой найденной картинки
     }
-    pic.src = 'main/main-1024.png';
 
+    //Удаляем подпись снизу
+    const mainText = document.getElementById('main-text');
+    if (mainText)
+        mainText.remove();
+
+    //Удаляем жезл снизу
+    const rod = document.getElementById('rod');
+    if (rod)
+        rod.remove();
+
+    pic.src = 'main/main-1024.png';
+    pic.style.maxWidth = '100%';
+    pic.style.borderRadius = '0%';
+    pic.style.border = '';
     const div = document.getElementById('row');
     // Удаление всех элементов из div с помощью innerHTML
     div.innerHTML = "";
-    const states = findStates();;
+    const states = findStates();
     states.forEach(element => {
         addPersonCard(element, div);
     });
-
 }
 
 function transformState(obj)
@@ -74,23 +97,47 @@ function transformState(obj)
         console.log('Не найден')
         return;
     }
+    // Запоминаем родителя
+    parent = obj.parent ? global.inputArray.find((element, index, array) => {
+        return element.id === obj.parent;
+    }) : null;
 
-    let pic = document.querySelector('.main-image');
-    if (pic) {
-        console.log(pic.src); // Выведет URL первой найденной картинки
-    }
+    let divMain = document.getElementById('main');
+    const pic = document.getElementById('mainPic');
+    console.log(pic);
     pic.src = 'images/' + obj.image;
     pic.style.borderRadius = '50%'; /* Для округления картинки */
-    pic.style.maxWidth = '50%';
+    pic.style.maxWidth = '359px';
+    pic.style.border = '2px solid transparent';
+    pic.style.borderColor = '#DBAE64';
 
-    const div = document.getElementById('row');
+    let newSpan = document.getElementById('main-text');
+    if (!newSpan)
+    {
+        newSpan = document.createElement('span');
+        newSpan.className = 'text';
+        newSpan.id = 'main-text';
+        divMain.appendChild(newSpan);
+    }
+    newSpan.textContent = obj.name;
+    
+    if (!document.getElementById('rod'))
+    {
+        // Вставляем жезл после глоавного окна
+        const newRod = document.createElement('img');
+        newRod.id = 'rod';
+        newRod.src = 'main/rod-1440.png'
+        // Вставка нового элемента сразу после referenceElement
+        divMain.insertAdjacentElement('afterend', newRod);
+    }
+     
+    const divRow = document.getElementById('row');
     // Удаление всех элементов из div с помощью innerHTML
-    div.innerHTML = "";
+    divRow.innerHTML = "";
     const childs = findChilds(obj.id);
     childs.forEach(element => {
-        addPersonCard(element, div);
+        addPersonCard(element, divRow);
     });
-    
 }
 
 for (let i = 1; i <= 3; i++) {
