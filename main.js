@@ -1,19 +1,87 @@
 let parent = null;
+let currentId = -1;
 
 function updateButtonVisibility(isNotVisible) {
     const leftButton = document.getElementById('left-button');
     const rightButton = document.getElementById('right-button');
+    const leftButtonMain = document.getElementById('left-button-main');
+    const rightButtonMain = document.getElementById('right-button-main');
 
     if (isNotVisible) {
-        leftButton.style.display = 'inline-block';
-        rightButton.style.display = 'inline-block';
+        leftButton.style.display = 'block';
+        rightButton.style.display = 'block';
+        leftButtonMain.style.display = 'block';
+        rightButtonMain.style.display = 'block';
     } else {
         leftButton.style.display = 'none';
         rightButton.style.display = 'none';
+        leftButtonMain.style.display = 'none';
+        rightButtonMain.style.display = 'none';
     }
 }
 // Вызов функции для обновления видимости кнопок
 updateButtonVisibility(false);
+
+//Добавляем прослушку
+const rightButton = document.getElementById('right-button');
+rightButton.addEventListener('click', goHome);
+
+const leftButton = document.getElementById('left-button');
+leftButton.addEventListener('click', ()=>{
+    parent ? transformState(parent) : goHome();
+});
+
+// Функция параллельного поиска
+function parallelTransition(isLeft)
+{
+    console.log('1');
+
+    if (isLeft)
+        add = -1;
+    else
+        add = 1;
+
+    const startIndex = global.inputArray.findIndex(element => element.id === currentId);
+    let currentIndex = (startIndex + add) % global.inputArray.length;
+
+    if (parent)
+    {
+        for (let i = 1; i < global.inputArray.length; i++) 
+        {
+            // Вычисляем текущий индекс с учетом остатка
+            currentIndex = (startIndex + i * add) % global.inputArray.length;
+            console.log(currentIndex);
+            if (global.inputArray[currentIndex].parent && global.inputArray[currentIndex].parent === parent.id)
+            {
+                transformState(global.inputArray[currentIndex]);
+                break;
+            }
+        }
+    }
+    else
+    {
+        for (let i = 1; i < global.inputArray.length; i++) 
+        {
+            // Вычисляем текущий индекс с учетом остатка
+            currentIndex = (startIndex + i * add) % global.inputArray.length;
+            if (!global.inputArray[currentIndex].parent)
+            {
+                transformState(global.inputArray[currentIndex]);
+                break;
+            }
+        }
+    }
+}
+
+//Добавляем прослушку
+const leftButtonMain = document.getElementById('left-button-main');
+leftButtonMain.addEventListener('click', ()=>{
+    parallelTransition(true);
+});
+const rightButtonMain = document.getElementById('right-button-main');
+rightButtonMain.addEventListener('click', ()=>{
+    parallelTransition(false);
+});
 
 function findChilds(id)
 {
@@ -23,18 +91,6 @@ function findStates()
 {
     return global.inputArray.filter(state => !state.parent);
 }
-
-const rightButton = document.getElementById('right-button');
-rightButton.addEventListener('click', goHome);
-
-const leftButton = document.getElementById('left-button');
-leftButton.addEventListener('click', ()=>{
-    if (parent)
-        transformState(parent);
-    else
-        goHome();
-});
-
 
 function addPersonCard(element, div)
 {
@@ -88,10 +144,14 @@ function goHome()
     });
 }
 
+//Делаем другого персонажа основным
 function transformState(obj)
 {
-    updateButtonVisibility(true) //Добавляем кнопки сверху по краям
-    
+    //Добавляем кнопки сверху по краям
+    updateButtonVisibility(true);
+    // Запоминаем текущий id
+    currentId = obj.id;
+
     if (!obj)
     {
         console.log('Не найден')
@@ -106,7 +166,7 @@ function transformState(obj)
     const pic = document.getElementById('mainPic');
     console.log(pic);
     pic.src = 'images/' + obj.image;
-    pic.style.borderRadius = '50%'; /* Для округления картинки */
+    pic.style.borderRadius = '50%';
     pic.style.maxWidth = '359px';
     pic.style.border = '2px solid transparent';
     pic.style.borderColor = '#DBAE64';
@@ -140,16 +200,18 @@ function transformState(obj)
     });
 }
 
-for (let i = 1; i <= 3; i++) {
+for (let i = 1; i <= 3; i++) 
+{
     const pic = document.getElementById(i);
     const obj = global.inputArray.find((element, index, array) => {
         return element.id === i;
     });
-    if (obj) {
+    if (obj) 
+        {
         pic.addEventListener('click', () => {
             transformState(obj);
         });
-    } else {
+    } 
+    else 
         console.error(`Element with id ${i} not found in global.inputArray`);
-    }
 }

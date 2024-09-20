@@ -1,3 +1,5 @@
+
+
 body {
     margin: 0;
     height: 100vh; /* Устанавливаем высоту body равной высоте экрана */
@@ -54,15 +56,27 @@ body {
     cursor: pointer;
 }
 
-.image-button img {
+.image-button .corner-image {
     width: 100px;  /* Укажите нужный размер */
     height: auto;  /* Автоматическое изменение высоты */
 }
 
+.image-button .corner-image {
+    width: 100px;  /* Укажите нужный размер */
+    height: auto;  /* Автоматическое изменение высоты */
+}
+
+.image-button .button-main-image {
+    width: 100%;  /* Укажите нужный размер */
+    height: auto;  /* Автоматическое изменение высоты */
+}
+
+
+
 #left-button 
 {
     position: absolute;
-    left: 130px; /* Прилепить к правому краю */
+    left: 7vw; /* Прилепить к правому краю */
     top: 88px; /* Прилепить к верхнему краю */
     background: none; /* Убираем фон */
     border: none; /* Убираем рамку */
@@ -81,7 +95,7 @@ body {
 #right-button 
 {
     position: absolute;
-    right: 130px; /* Прилепить к правому краю */
+    right: 7vw; /* Прилепить к правому краю */
     top: 88px; /* Прилепить к верхнему краю */
     width: 100px; /* Укажите нужный размер */
     height: auto; /* Автоматическое изменение высоты */
@@ -118,7 +132,7 @@ body {
 
 
 .main-image {
-    max-width: 100%;
+    max-width: 359px;
     height: auto;
     margin-top: 10%;
     margin-bottom: 20px;
@@ -126,9 +140,8 @@ body {
 
 .state-image
 {
-    width: 200px;          /* Ширина кружка */
-    height: 200px;         /* Высота кружка (должна быть равна ширине для круга) */
-    height: auto;
+    max-width: 100%;
+    max-height: 100%;
     border-radius: 50%; /* Для округления картинки */
     overflow: hidden; /* Для обрезки содержимого, выходящего за рамки */
     border: 2px solid transparent; /* Ширина бордера, цвет - прозрачный */
