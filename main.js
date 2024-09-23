@@ -44,33 +44,21 @@ function parallelTransition(isLeft)
     const startIndex = global.inputArray.findIndex(element => element.id === currentId);
     let currentIndex = (startIndex + add) % global.inputArray.length;
 
-    if (parent)
+    let cicle = function()
     {
         for (let i = 1; i < global.inputArray.length; i++) 
         {
             // Вычисляем текущий индекс с учетом остатка
-            currentIndex = (startIndex + i * add) % global.inputArray.length;
-            console.log(currentIndex);
-            if (global.inputArray[currentIndex].parent && global.inputArray[currentIndex].parent === parent.id)
+            currentIndex = (startIndex + i * add + global.inputArray.length) % global.inputArray.length;
+            if (global.inputArray[currentIndex].parent === (parent ? parent.id : undefined))
             {
                 transformState(global.inputArray[currentIndex]);
                 break;
             }
         }
     }
-    else
-    {
-        for (let i = 1; i < global.inputArray.length; i++) 
-        {
-            // Вычисляем текущий индекс с учетом остатка
-            currentIndex = (startIndex + i * add) % global.inputArray.length;
-            if (!global.inputArray[currentIndex].parent)
-            {
-                transformState(global.inputArray[currentIndex]);
-                break;
-            }
-        }
-    }
+    cicle();
+
 }
 
 //Добавляем прослушку
@@ -117,14 +105,16 @@ function goHome()
 {
     updateButtonVisibility(false);
     let pic = document.getElementById('mainPic');
-    if (pic) {
-        console.log(pic.src); // Выведет URL первой найденной картинки
-    }
-
-    //Удаляем подпись снизу
+    
+    //Удаляем имя снизу
     const mainText = document.getElementById('main-text');
     if (mainText)
         mainText.remove();
+
+    //Удаляем подпись снизу
+    const descriptionText = document.getElementById('description-text');
+    if (descriptionText)
+        descriptionText.remove();
 
     //Удаляем жезл снизу
     const rod = document.getElementById('rod');
@@ -171,16 +161,29 @@ function transformState(obj)
     pic.style.border = '2px solid transparent';
     pic.style.borderColor = '#DBAE64';
 
-    let newSpan = document.getElementById('main-text');
-    if (!newSpan)
+    let newSpanMain = document.getElementById('main-text');
+    if (!newSpanMain)
     {
-        newSpan = document.createElement('span');
-        newSpan.className = 'text';
-        newSpan.id = 'main-text';
-        divMain.appendChild(newSpan);
+        newSpanMain = document.createElement('span');
+        newSpanMain.className = 'text';
+        newSpanMain.id = 'main-text';
+        divMain.appendChild(newSpanMain);
     }
-    newSpan.textContent = obj.name;
-    
+    newSpanMain.textContent = obj.name;
+    newSpanMain.style.fontSize = '61px';
+
+    console.log(obj.post);
+    let newSpanDescription = document.getElementById('description-text');
+    if (!newSpanDescription)
+    {
+        newSpanDescription = document.createElement('span');
+        newSpanDescription.className = 'text';
+        newSpanDescription.id = 'description-text';
+        divMain.appendChild(newSpanDescription);
+    }
+    newSpanDescription.textContent = obj.post;
+    newSpanDescription.style.fontSize = '17px';
+
     if (!document.getElementById('rod'))
     {
         // Вставляем жезл после глоавного окна
