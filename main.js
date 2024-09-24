@@ -104,6 +104,7 @@ function addPersonCard(element, div)
 function goHome()
 {
     updateButtonVisibility(false);
+    addElementsForWhoHasChildren(0);
     let pic = document.getElementById('mainPic');
     
     //Удаляем имя снизу
@@ -125,7 +126,7 @@ function goHome()
     pic.style.maxWidth = '100%';
     pic.style.borderRadius = '0%';
     pic.style.border = '';
-    const div = document.getElementById('row');
+    const div = document.getElementById('rowChilds');
     // Удаление всех элементов из div с помощью innerHTML
     div.innerHTML = "";
     const states = findStates();
@@ -157,7 +158,7 @@ function transformState(obj)
     console.log(pic);
     pic.src = 'images/' + obj.image;
     pic.style.borderRadius = '50%';
-    pic.style.maxWidth = '359px';
+    
     pic.style.border = '2px solid transparent';
     pic.style.borderColor = '#DBAE64';
 
@@ -167,7 +168,7 @@ function transformState(obj)
         newSpanMain = document.createElement('span');
         newSpanMain.className = 'text';
         newSpanMain.id = 'main-text';
-        divMain.appendChild(newSpanMain);
+        document.getElementById('main-card').appendChild(newSpanMain);
     }
     newSpanMain.textContent = obj.name;
     newSpanMain.style.fontSize = '61px';
@@ -179,28 +180,72 @@ function transformState(obj)
         newSpanDescription = document.createElement('span');
         newSpanDescription.className = 'text';
         newSpanDescription.id = 'description-text';
-        divMain.appendChild(newSpanDescription);
+        document.getElementById('main-card').appendChild(newSpanDescription);
     }
     newSpanDescription.textContent = obj.post;
     newSpanDescription.style.fontSize = '17px';
 
-    if (!document.getElementById('rod'))
-    {
-        // Вставляем жезл после глоавного окна
-        const newRod = document.createElement('img');
-        newRod.id = 'rod';
-        newRod.src = 'main/rod-1440.png'
-        // Вставка нового элемента сразу после referenceElement
-        divMain.insertAdjacentElement('afterend', newRod);
-    }
+    
      
-    const divRow = document.getElementById('row');
+    const divRow = document.getElementById('rowChilds');
     // Удаление всех элементов из div с помощью innerHTML
     divRow.innerHTML = "";
     const childs = findChilds(obj.id);
+    addElementsForWhoHasChildren(childs.length, parent === null, divMain);
     childs.forEach(element => {
         addPersonCard(element, divRow);
     });
+}
+
+function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
+{
+    if (!countOfChildren)
+    {
+        const rod = document.getElementById('rod');
+        if (rod)
+            rod.remove();
+        const iconDiv = document.getElementById('icon');
+        if (iconDiv)
+            iconDiv.remove();
+    }
+    else
+    {
+        if (!document.getElementById('rod'))
+        {
+            // Вставляем жезл после главного окна
+            const newRod = document.createElement('img');
+            newRod.id = 'rod';
+            newRod.src = 'main/rod-1440.png'
+            // Вставка нового элемента сразу после referenceElement
+            document.getElementById('forRod').insertAdjacentElement('afterend', newRod);
+        }
+        if (isState)
+            return;
+        if (!document.getElementById('icon'))
+        {
+            const newIconDiv = document.createElement('div');
+            newIconDiv.id = 'icon';
+
+            const newIconPic = document.createElement('img');
+            newIconPic.id = 'icon-number'
+            newIconPic.src = 'buttons/icon_number.png';
+            newIconDiv.appendChild(newIconPic);
+
+            const newTextIcon = document.createElement('span');
+            newTextIcon.className = 'text';
+            newTextIcon.id = 'text-icon-number';
+            newTextIcon.textContent = countOfChildren;
+            
+            newIconDiv.appendChild(newTextIcon);
+            document.getElementById('main-pic').appendChild(newIconDiv);
+        }
+        else
+        {
+            const countOfChildrenText = document.getElementById('text-icon-number');
+            countOfChildrenText.textContent = countOfChildren;
+        }
+
+    }
 }
 
 for (let i = 1; i <= 3; i++) 

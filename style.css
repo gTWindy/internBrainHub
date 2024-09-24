@@ -1,9 +1,6 @@
-
-
 body {
     margin: 0;
     height: 100vh; /* Устанавливаем высоту body равной высоте экрана */
-    overflow: hidden; /* Скрываем часть изображения, выходящую за пределы экрана */
     background-image: url('bg/bg.png');
     background-size: cover; /* чтобы изображение полностью заполняло экран */
     background-position: top; /* Показываем верхнюю часть изображения */
@@ -28,9 +25,6 @@ body {
 }
 
 .text-button {
-    position: absolute;
-    left: 130px; /* Прилепить к правому краю */
-    top: 88; /* Прилепить к верхнему краю */
     background: none; /* Убираем фон */
     border: none; /* Убираем рамку */
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
@@ -71,7 +65,19 @@ body {
     height: auto;  /* Автоматическое изменение высоты */
 }
 
+@media (max-width: 720px) {
+    .main-image {
+        width: 85%;  /* Укажите нужный размер */
+        height: auto;  /* Автоматическое изменение высоты */
+    }
+}
 
+@media (max-width: 400px) {
+    .main-image {
+        width: 80%;  /* Укажите нужный размер */
+        height: auto;  /* Автоматическое изменение высоты */
+    }
+}
 
 #left-button 
 {
@@ -92,6 +98,46 @@ body {
     font-size: 26px;
 }
 
+@media (max-width: 720px) {
+    #left-button
+    {
+        position: absolute;
+        left: 6vw; /* Прилепить к правому краю */
+        top: 75px; /* Прилепить к верхнему краю */
+        background: none; /* Убираем фон */
+        border: none; /* Убираем рамку */
+        background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
+        color: transparent; /* Делаем текст прозрачным */
+        background-clip: text; /* Для остальных браузеров */
+        text-decoration: underline; /* Подчеркивание текста */
+        cursor: pointer; /* Указатель мыши */
+        padding: 0; /* Убираем отступы */
+        margin: 0; /* Убираем внешние отступы */
+        font-family: 'Crimson Text', serif; /* Указываем шрифт */
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 500px) {
+    #left-button
+    {
+        position: absolute;
+        left: 5vw; /* Прилепить к правому краю */
+        top: 65px; /* Прилепить к верхнему краю */
+        background: none; /* Убираем фон */
+        border: none; /* Убираем рамку */
+        background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
+        color: transparent; /* Делаем текст прозрачным */
+        background-clip: text; /* Для остальных браузеров */
+        text-decoration: underline; /* Подчеркивание текста */
+        cursor: pointer; /* Указатель мыши */
+        padding: 0; /* Убираем отступы */
+        margin: 0; /* Убираем внешние отступы */
+        font-family: 'Crimson Text', serif; /* Указываем шрифт */
+        font-size: 20px;
+    }
+}
+
 #right-button 
 {
     position: absolute;
@@ -99,6 +145,24 @@ body {
     top: 88px; /* Прилепить к верхнему краю */
     width: 100px; /* Укажите нужный размер */
     height: auto; /* Автоматическое изменение высоты */
+}
+
+@media (max-width: 720px) {
+    #right-button 
+    {
+    position: absolute;
+    right: 6vw; /* Прилепить к правому краю */
+    top: 75px; /* Прилепить к верхнему краю */
+    }
+}
+
+@media (max-width: 500px) {
+    #right-button 
+    {
+        position: absolute;
+        right: 5vw; /* Прилепить к правому краю */
+        top: 65px; /* Прилепить к верхнему краю */
+    }
 }
 
 #main
@@ -110,9 +174,15 @@ body {
 
 .row {
     display: flex;
-    flex-wrap: wrap; /* Позволяет элементам переходить на новую строку */
     justify-content: center; /* Центрирует элементы по горизонтали */
 }
+
+#rowChilds
+{
+    flex-wrap: wrap; /* Позволяет элементам переходить на новую строку */
+}
+
+
 .block {
     flex: 0 0 auto; /* Не позволяет элементам сжиматься */
     width: 200px; /* Ширина элемента (можете изменить по вашим требованиям) */
@@ -129,13 +199,38 @@ body {
     color: #555; /* Цвет надписи */
 }
 
+#main-card {
+    display: flex;
+    flex-direction: column;
+}
 
+#main-pic {
+    position: relative;
+    display: inline-block;
+}
+
+#icon 
+{
+    position: absolute;
+    bottom: 20px;
+    left: 35px;
+    display: flex; /* Включаем flex-контейнер */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+}
 
 .main-image {
-    max-width: 359px;
+    max-width: 100%;
     height: auto;
     margin-top: 10%;
     margin-bottom: 20px;
+}
+
+#text-icon-number {
+    position: absolute; /* Абсолютное позиционирование для центрирования */
+    top: 50%; /* Положение по вертикали */
+    left: 50%; /* Положение по горизонтали */
+    transform: translate(-50%, -50%); /* Центрируем текст относительно его размера */
 }
 
 .state-image
