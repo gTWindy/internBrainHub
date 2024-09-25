@@ -12,7 +12,7 @@ body {
 
 .text
 {
-    background: none; /* Убираем фон */
+    background: none;
     border: none; /* Убираем рамку */
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
     -webkit-background-clip: text; /* Для WebKit-браузеров */
@@ -48,6 +48,13 @@ body {
     border: none;
     padding: 0;
     cursor: pointer;
+    min-height: 30px;
+}
+
+.image-button img{
+    display: block; /* Убираем отступы под изображением */
+    width: auto; /* Можно задать ширину */
+    height: auto; /* Можно задать высоту */
 }
 
 .image-button .corner-image {
@@ -58,6 +65,13 @@ body {
 .image-button .corner-image {
     width: 100px;  /* Укажите нужный размер */
     height: auto;  /* Автоматическое изменение высоты */
+}
+
+@media (max-width: 380px) {
+    .image-button .corner-image {
+        width: 70px;  /* Укажите нужный размер */
+        height: auto;  /* Автоматическое изменение высоты */
+    }
 }
 
 .image-button .button-main-image {
@@ -66,14 +80,14 @@ body {
 }
 
 @media (max-width: 720px) {
-    .main-image {
+    .button-main-image {
         width: 85%;  /* Укажите нужный размер */
         height: auto;  /* Автоматическое изменение высоты */
     }
 }
 
 @media (max-width: 400px) {
-    .main-image {
+    .button-main-image {
         width: 80%;  /* Укажите нужный размер */
         height: auto;  /* Автоматическое изменение высоты */
     }
@@ -156,12 +170,12 @@ body {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 380px) {
     #right-button 
     {
         position: absolute;
         right: 5vw; /* Прилепить к правому краю */
-        top: 65px; /* Прилепить к верхнему краю */
+        top: 35px; /* Прилепить к верхнему краю */
     }
 }
 
@@ -174,24 +188,26 @@ body {
 
 .row {
     display: flex;
-    justify-content: center; /* Центрирует элементы по горизонтали */
+    justify-content: center;
+    align-items: center
 }
 
 #rowChilds
 {
-    flex-wrap: wrap; /* Позволяет элементам переходить на новую строку */
+    flex-wrap: wrap;
 }
-
 
 .block {
     flex: 0 0 auto; /* Не позволяет элементам сжиматься */
     width: 200px; /* Ширина элемента (можете изменить по вашим требованиям) */
     margin: 10px; /* Отступы между элементами */
 }
+
 .button {
     padding: 10px 20px; /* Отступы кнопки */
     font-size: 16px; /* Размер шрифта */
 }
+
 .label {
     display: block; /* Делаем надпись блочной */
     margin-top: 5px; /* Отступ сверху */
@@ -209,6 +225,21 @@ body {
     display: inline-block;
 }
 
+#main-text {
+    font-size: '61px';
+}
+
+@media (max-width: 500px) {
+    #main-text
+    {
+        font-size: '41px';
+    }
+}
+
+#description-text {
+    font-size: 17px;
+}
+
 #icon 
 {
     position: absolute;
@@ -220,10 +251,20 @@ body {
 }
 
 .main-image {
-    max-width: 100%;
+    max-width: 359px;
     height: auto;
-    margin-top: 10%;
+    margin-top: 67px;
     margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .main-image
+    {
+        max-width: 85%;
+        height: auto;
+        margin-top: 86px;
+        margin-bottom: 15px;
+    }
 }
 
 #text-icon-number {

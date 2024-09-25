@@ -123,7 +123,6 @@ function goHome()
         rod.remove();
 
     pic.src = 'main/main-1024.png';
-    pic.style.maxWidth = '100%';
     pic.style.borderRadius = '0%';
     pic.style.border = '';
     const div = document.getElementById('rowChilds');
@@ -162,6 +161,7 @@ function transformState(obj)
     pic.style.border = '2px solid transparent';
     pic.style.borderColor = '#DBAE64';
 
+    //Имя карточки
     let newSpanMain = document.getElementById('main-text');
     if (!newSpanMain)
     {
@@ -171,9 +171,8 @@ function transformState(obj)
         document.getElementById('main-card').appendChild(newSpanMain);
     }
     newSpanMain.textContent = obj.name;
-    newSpanMain.style.fontSize = '61px';
 
-    console.log(obj.post);
+    //Описание карточки
     let newSpanDescription = document.getElementById('description-text');
     if (!newSpanDescription)
     {
@@ -183,9 +182,6 @@ function transformState(obj)
         document.getElementById('main-card').appendChild(newSpanDescription);
     }
     newSpanDescription.textContent = obj.post;
-    newSpanDescription.style.fontSize = '17px';
-
-    
      
     const divRow = document.getElementById('rowChilds');
     // Удаление всех элементов из div с помощью innerHTML
@@ -199,14 +195,21 @@ function transformState(obj)
 
 function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
 {
+    let removeIcon = ()=>
+    {
+        const iconDiv = document.getElementById('icon');
+        if (iconDiv)
+            iconDiv.remove();
+    }
+    //Если это государство, то удаляем иконку
+    if (isState)
+        removeIcon();
     if (!countOfChildren)
     {
         const rod = document.getElementById('rod');
         if (rod)
             rod.remove();
-        const iconDiv = document.getElementById('icon');
-        if (iconDiv)
-            iconDiv.remove();
+        removeIcon();
     }
     else
     {
