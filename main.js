@@ -1,23 +1,32 @@
 let parent = null;
 let currentId = -1;
 
+function updateArrowVisibility(isNotVisible) {
+    const leftArrow = document.getElementById('left-arrow');
+    const rightArrow = document.getElementById('right-arrow');
+
+    if (isNotVisible) {
+        leftArrow.style.display = 'block';
+        rightArrow.style.display = 'block';
+    } else {
+        leftArrow.style.display = 'none';
+        rightArrow.style.display = 'none';
+    }
+}
+
 function updateButtonVisibility(isNotVisible) {
     const leftButton = document.getElementById('left-button');
     const rightButton = document.getElementById('right-button');
-    const leftButtonMain = document.getElementById('left-button-main');
-    const rightButtonMain = document.getElementById('right-button-main');
 
     if (isNotVisible) {
         leftButton.style.display = 'block';
         rightButton.style.display = 'block';
-        leftButtonMain.style.display = 'block';
-        rightButtonMain.style.display = 'block';
     } else {
         leftButton.style.display = 'none';
         rightButton.style.display = 'none';
-        leftButtonMain.style.display = 'none';
-        rightButtonMain.style.display = 'none';
     }
+
+    updateArrowVisibility(isNotVisible);
 }
 // Вызов функции для обновления видимости кнопок
 updateButtonVisibility(false);
@@ -62,11 +71,11 @@ function parallelTransition(isLeft)
 }
 
 //Добавляем прослушку
-const leftButtonMain = document.getElementById('left-button-main');
+const leftButtonMain = document.getElementById('left-arrow');
 leftButtonMain.addEventListener('click', ()=>{
     parallelTransition(true);
 });
-const rightButtonMain = document.getElementById('right-button-main');
+const rightButtonMain = document.getElementById('right-arrow');
 rightButtonMain.addEventListener('click', ()=>{
     parallelTransition(false);
 });
@@ -101,6 +110,7 @@ function addPersonCard(element, div)
     div.appendChild(newDiv);
 }
 
+// Переходим на начальную страницу
 function goHome()
 {
     updateButtonVisibility(false);
@@ -139,6 +149,7 @@ function transformState(obj)
 {
     //Добавляем кнопки сверху по краям
     updateButtonVisibility(true);
+
     // Запоминаем текущий id
     currentId = obj.id;
 
@@ -151,6 +162,8 @@ function transformState(obj)
     parent = obj.parent ? global.inputArray.find((element, index, array) => {
         return element.id === obj.parent;
     }) : null;
+
+    hideArrows();
 
     let divMain = document.getElementById('main');
     const pic = document.getElementById('mainPic');
@@ -193,6 +206,7 @@ function transformState(obj)
     });
 }
 
+//Добавляем или удаляем элементы в зависимости от кол-ва детей
 function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
 {
     let removeIcon = ()=>
@@ -249,6 +263,24 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
         }
 
     }
+}
+
+//Прячем стрелочки, если у карточки не братьев
+function hideArrows()
+{
+    if (!parent)
+        return updateArrowVisibility(false);
+
+    const condition = (element) => element.parent === parent.id;
+    const count = global.inputArray.reduce((acc, element) => {
+        return condition(element) ? acc + 1 : acc;
+    }, 0);
+
+    if (count > 1)
+        updateArrowVisibility(true);
+    else
+        updateArrowVisibility(false);
+
 }
 
 for (let i = 1; i <= 3; i++) 

@@ -1,9 +1,9 @@
 body {
     margin: 0;
-    height: 100vh; /* Устанавливаем высоту body равной высоте экрана */
+    height: 100vh;
     background-image: url('bg/bg.png');
-    background-size: cover; /* чтобы изображение полностью заполняло экран */
-    background-position: top; /* Показываем верхнюю часть изображения */
+    background-size: cover;
+    background-position: top;
 }
 
 .container {
@@ -13,14 +13,13 @@ body {
 .text
 {
     background: none;
-    border: none; /* Убираем рамку */
+    border: none;
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
-    -webkit-background-clip: text; /* Для WebKit-браузеров */
-    color: transparent; /* Делаем текст прозрачным */
-    background-clip: text; /* Для остальных браузеров */
-    text-decoration: underline; /* Подчеркивание текста */
-    cursor: pointer; /* Указатель мыши */
-    font-family: 'Crimson Text', serif; /* Указываем шрифт */
+    color: transparent;
+    background-clip: text;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: 'Crimson Text', serif;
     font-size: 26px;
 }
 
@@ -67,30 +66,14 @@ body {
     height: auto;  /* Автоматическое изменение высоты */
 }
 
-@media (max-width: 380px) {
-    .image-button .corner-image {
-        width: 70px;  /* Укажите нужный размер */
-        height: auto;  /* Автоматическое изменение высоты */
-    }
+.image-button .button-arrow {
+    width: 100%;
+    height: auto;
 }
 
-.image-button .button-main-image {
-    width: 100%;  /* Укажите нужный размер */
-    height: auto;  /* Автоматическое изменение высоты */
-}
-
-@media (max-width: 720px) {
-    .button-main-image {
-        width: 85%;  /* Укажите нужный размер */
-        height: auto;  /* Автоматическое изменение высоты */
-    }
-}
-
-@media (max-width: 400px) {
-    .button-main-image {
-        width: 80%;  /* Укажите нужный размер */
-        height: auto;  /* Автоматическое изменение высоты */
-    }
+/*Правая стрелочка*/
+#right-arrow {
+    transform: rotate(180deg);
 }
 
 #left-button 
@@ -112,46 +95,6 @@ body {
     font-size: 26px;
 }
 
-@media (max-width: 720px) {
-    #left-button
-    {
-        position: absolute;
-        left: 6vw; /* Прилепить к правому краю */
-        top: 75px; /* Прилепить к верхнему краю */
-        background: none; /* Убираем фон */
-        border: none; /* Убираем рамку */
-        background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
-        color: transparent; /* Делаем текст прозрачным */
-        background-clip: text; /* Для остальных браузеров */
-        text-decoration: underline; /* Подчеркивание текста */
-        cursor: pointer; /* Указатель мыши */
-        padding: 0; /* Убираем отступы */
-        margin: 0; /* Убираем внешние отступы */
-        font-family: 'Crimson Text', serif; /* Указываем шрифт */
-        font-size: 25px;
-    }
-}
-
-@media (max-width: 500px) {
-    #left-button
-    {
-        position: absolute;
-        left: 5vw; /* Прилепить к правому краю */
-        top: 65px; /* Прилепить к верхнему краю */
-        background: none; /* Убираем фон */
-        border: none; /* Убираем рамку */
-        background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
-        color: transparent; /* Делаем текст прозрачным */
-        background-clip: text; /* Для остальных браузеров */
-        text-decoration: underline; /* Подчеркивание текста */
-        cursor: pointer; /* Указатель мыши */
-        padding: 0; /* Убираем отступы */
-        margin: 0; /* Убираем внешние отступы */
-        font-family: 'Crimson Text', serif; /* Указываем шрифт */
-        font-size: 20px;
-    }
-}
-
 #right-button 
 {
     position: absolute;
@@ -159,24 +102,6 @@ body {
     top: 88px; /* Прилепить к верхнему краю */
     width: 100px; /* Укажите нужный размер */
     height: auto; /* Автоматическое изменение высоты */
-}
-
-@media (max-width: 720px) {
-    #right-button 
-    {
-    position: absolute;
-    right: 6vw; /* Прилепить к правому краю */
-    top: 75px; /* Прилепить к верхнему краю */
-    }
-}
-
-@media (max-width: 380px) {
-    #right-button 
-    {
-        position: absolute;
-        right: 5vw; /* Прилепить к правому краю */
-        top: 35px; /* Прилепить к верхнему краю */
-    }
 }
 
 #main
@@ -229,13 +154,6 @@ body {
     font-size: '61px';
 }
 
-@media (max-width: 500px) {
-    #main-text
-    {
-        font-size: '41px';
-    }
-}
-
 #description-text {
     font-size: 17px;
 }
@@ -255,16 +173,6 @@ body {
     height: auto;
     margin-top: 67px;
     margin-bottom: 20px;
-}
-
-@media (max-width: 500px) {
-    .main-image
-    {
-        max-width: 85%;
-        height: auto;
-        margin-top: 86px;
-        margin-bottom: 15px;
-    }
 }
 
 #text-icon-number {
