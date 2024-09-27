@@ -115,7 +115,7 @@ function goHome()
 {
     updateButtonVisibility(false);
     addElementsForWhoHasChildren(0);
-    let pic = document.getElementById('mainPic');
+    let pic = document.getElementById('main-pic');
     
     //Удаляем имя снизу
     const mainText = document.getElementById('main-text');
@@ -132,10 +132,9 @@ function goHome()
     if (rod)
         rod.remove();
 
-    pic.src = 'main/main-1024.png';
-    pic.style.borderRadius = '0%';
-    pic.style.border = '';
-    const div = document.getElementById('rowChilds');
+    pic.src = 'main/main-1024.svg';
+    pic.className = 'startMainPicture';
+    const div = document.getElementById('row-childs');
     // Удаление всех элементов из div с помощью innerHTML
     div.innerHTML = "";
     const states = findStates();
@@ -166,13 +165,10 @@ function transformState(obj)
     hideArrows();
 
     let divMain = document.getElementById('main');
-    const pic = document.getElementById('mainPic');
+    const pic = document.getElementById('main-pic');
     console.log(pic);
     pic.src = 'images/' + obj.image;
-    pic.style.borderRadius = '50%';
-    
-    pic.style.border = '2px solid transparent';
-    pic.style.borderColor = '#DBAE64';
+    pic.className = 'notStartMainPicture';
 
     //Имя карточки
     let newSpanMain = document.getElementById('main-text');
@@ -196,7 +192,7 @@ function transformState(obj)
     }
     newSpanDescription.textContent = obj.post;
      
-    const divRow = document.getElementById('rowChilds');
+    const divRow = document.getElementById('row-childs');
     // Удаление всех элементов из div с помощью innerHTML
     divRow.innerHTML = "";
     const childs = findChilds(obj.id);

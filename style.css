@@ -57,8 +57,8 @@ body {
 }
 
 .image-button .corner-image {
-    width: 100px;  /* Укажите нужный размер */
-    height: auto;  /* Автоматическое изменение высоты */
+    width: 100px; 
+    height: auto;
 }
 
 .image-button .corner-image {
@@ -98,16 +98,16 @@ body {
 #right-button 
 {
     position: absolute;
-    right: 7vw; /* Прилепить к правому краю */
-    top: 88px; /* Прилепить к верхнему краю */
-    width: 100px; /* Укажите нужный размер */
-    height: auto; /* Автоматическое изменение высоты */
+    right: 7vw;
+    top: 88px;
+    width: 100px;
+    height: auto;
 }
 
 #main
 {
-    display: flex;         /* Используем flexbox */
-    flex-direction: column; /* Располагаем элементы сверху вниз */
+    display: flex;
+    flex-direction: column;
     align-items: center
 }
 
@@ -117,15 +117,16 @@ body {
     align-items: center
 }
 
-#rowChilds
+#row-childs
 {
     flex-wrap: wrap;
+    margin-top: 43px;
+    gap: 111px;
 }
 
 .block {
-    flex: 0 0 auto; /* Не позволяет элементам сжиматься */
-    width: 200px; /* Ширина элемента (можете изменить по вашим требованиям) */
-    margin: 10px; /* Отступы между элементами */
+    flex: 0 0 auto;
+    width: 200px;
 }
 
 .button {
@@ -133,11 +134,17 @@ body {
     font-size: 16px; /* Размер шрифта */
 }
 
-.label {
-    display: block; /* Делаем надпись блочной */
-    margin-top: 5px; /* Отступ сверху */
-    font-size: 14px; /* Размер шрифта надписи */
-    color: #555; /* Цвет надписи */
+.label-card {
+    border: none;
+    background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
+    color: transparent;
+    background-clip: text;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: 'Crimson Text', serif;
+    display: block;
+    margin-top: 29px;
+    font-size: 32px;
 }
 
 #main-card {
@@ -145,9 +152,24 @@ body {
     flex-direction: column;
 }
 
-#main-pic {
+/*Стиль главной стартовой картинки*/
+.startMainPicture
+{
+    max-width: 380px;
+    max-height: 345px;
+    width: 100%;
+    margin-top: 102px;
+}
+
+/*Стиль главной картинки*/
+.notStartMainPicture {
     position: relative;
     display: inline-block;
+    max-width: 359px;
+    max-height: 359px;
+    border-radius : 50%;
+    border : 2px solid transparent;
+    border-color : #DBAE64;
 }
 
 #main-text {
@@ -168,13 +190,6 @@ body {
     align-items: center; /* Центрируем по вертикали */
 }
 
-.main-image {
-    max-width: 359px;
-    height: auto;
-    margin-top: 67px;
-    margin-bottom: 20px;
-}
-
 #text-icon-number {
     position: absolute; /* Абсолютное позиционирование для центрирования */
     top: 50%; /* Положение по вертикали */
@@ -184,8 +199,8 @@ body {
 
 .state-image
 {
-    max-width: 100%;
-    max-height: 100%;
+    width: 188px;
+    height: 188px;
     border-radius: 50%; /* Для округления картинки */
     overflow: hidden; /* Для обрезки содержимого, выходящего за рамки */
     border: 2px solid transparent; /* Ширина бордера, цвет - прозрачный */
