@@ -10,19 +10,6 @@ body {
     text-align: center;
 }
 
-.text
-{
-    background: none;
-    border: none;
-    background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
-    color: transparent;
-    background-clip: text;
-    text-decoration: underline;
-    cursor: pointer;
-    font-family: 'Crimson Text', serif;
-    font-size: 26px;
-}
-
 .image-button {
     background: none;
     border: none;
@@ -31,34 +18,10 @@ body {
     width: fit-content
 }
 
-.image-button img{
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
 .row {
     display: flex;
     justify-content: center;
     align-items: center
-}
-
-#row-main{
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-#row-childs
-{
-    flex-wrap: wrap;
-    margin-top: 43px;
-    gap: 111px;
-}
-
-.block {
-    flex: 0 0 auto;
-    width: 200px;
 }
 
 .button {
@@ -66,24 +29,14 @@ body {
     font-size: 16px;
 }
 
-.label-card {
+.text
+{
     border: none;
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
     color: transparent;
     background-clip: text;
     text-decoration: underline;
-    cursor: pointer;
     font-family: 'Crimson Text', serif;
-    display: block;
-    margin-top: 29px;
-    font-size: 32px;
-}
-
-/*Див основной карточки*/
-#main-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center
 }
 
 /*Контейнер для кнопки "Назад"*/
@@ -143,6 +96,13 @@ body {
     height: 79px;
 }
 
+/*Контейнер хранящий карточку вместе со стрелочками и подпись к главной карточке*/
+#main-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
 /*Стрелочки по бокам от главной карточки*/
 .image-button .button-arrow {
     width: 46px;
@@ -157,10 +117,18 @@ body {
     border-color: rgba(219, 174, 100);
 }
 
+/*Контейнер для основной карточки вместе со стрелочками*/
+#row-main{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
 /*Левая стрелочка*/
 #left-arrow {
     margin-left: 7vw;
     margin-right: 10px;
+    margin-top:67px;
 }
 
 /*Правая стрелочка*/
@@ -168,9 +136,10 @@ body {
     transform: rotate(180deg);
     margin-left: 10px;
     margin-right: 7vw;
+    margin-top: 67px;
 }
 
-/*Стиль главной стартовой картинки*/
+/*Клас главной стартовой картинки*/
 .startMainPicture
 {
     max-width: 380px;
@@ -179,7 +148,7 @@ body {
     margin-top: 102px;
 }
 
-/*Стиль главной картинки*/
+/*Клас главной картинки*/
 .notStartMainPicture {
     position: relative;
     display: block;
@@ -192,7 +161,7 @@ body {
     border-color : #DBAE64;
 }
 
-/*Текст имени для главной карточки */
+/*Имя главной карточки */
 #main-text {
     font-size: 61px;
 }
@@ -207,21 +176,41 @@ body {
     position: absolute;
     bottom: 20px;
     left: 35px;
-    display: flex; /* Включаем flex-контейнер */
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #text-icon-number {
-    position: absolute; /* Абсолютное позиционирование для центрирования */
-    top: 50%; /* Положение по вертикали */
-    left: 50%; /* Положение по горизонтали */
-    transform: translate(-50%, -50%); /* Центрируем текст относительно его размера */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
+/*Жезл между родителем и его детьми*/
 #rod
 {
-    margin-top: 5vw;
+    display: none; 
+    background-image: url('main/rod-big.png');
+    width: 13px;
+    height: 130px;
+    margin-top: 3vw;
+}
+
+/*Контейнер для мини карточек снизу*/
+#row-childs
+{
+    flex-wrap: wrap;
+    margin-top: 4vw;
+    gap: 111px;
+}
+
+/*Контейнер одной мини карточки*/
+.card-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /*Картинка государства в мини карточках*/
@@ -244,4 +233,28 @@ body {
     overflow: hidden;
     border: 2px solid transparent;
     border-color: #DBAE64;
+}
+
+/*Имя мини карточки*/
+.mini-card-name
+{
+    background: none;
+    border: none;
+    background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
+    color: transparent;
+    background-clip: text;
+    text-decoration: underline;
+    font-family: 'Crimson Text', serif;
+    font-size: 26px;
+}
+
+/*Описание мини карточки*/
+.mini-card-description
+{
+    border: none;
+    background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
+    color: transparent;
+    background-clip: text;
+    text-decoration: underline;
+    font-family: 'Crimson Text', serif;
 }

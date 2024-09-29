@@ -1,5 +1,9 @@
 @media (max-width: 1024px)
 {
+    body
+    {
+        background-size: initial;
+    }
     .startMainPicture
     {
         max-width: 284px;
@@ -12,6 +16,7 @@
         gap: 44px;
     }
 }
+
 @media (max-width: 768px)
 {
     .startMainPicture
@@ -22,14 +27,71 @@
     }
     #row-childs
     {
-        margin-top: 77;
+        margin-top: 2vw;
     }
 }
+
 @media (max-width: 320px)
 {
-    #rod{
+    .back-button-container {
+        top: 36px;
+    }
+    .back-button 
+    {
+        font-size: 17px;
+    }
+    #right-button
+    {
+        top: 29px;
+    }
+    #right-button img
+    {
+        width: 40px;
+        height: 36px;
+    }
+    .startMainPicture
+    {
+        max-width: 202px;
+        max-height: 181px;
+        margin-top: 60px;
+    }
+    .notStartMainPicture
+    {
+        max-width: 168px;
+        max-height: 168px;
+        margin-top: 86px;
+    }
+    /*Стрелочки по бокам от главной карточки*/
+    .image-button .button-arrow {
+        width: 36px;
+        height: 36px;
+    }
+    #main-text {
+        font-size: 41px;
+    }
+    #row-childs
+    {
         margin-top: 2vw;
-        width: 12px;
-        height: 57px;
+        gap: 5px;
+    }
+    .state-image
+    {
+        max-width: 120px;
+        max-height: 120px;
+    }
+    .label-card
+    {
+        font-size: 19;
+    }
+    #rod
+    {
+        background-image: url('main/rod-mini.svg');
+        height: 55px;
+        margin-top: 2vw;
+    }
+    .mini-card-image 
+    {
+        max-width: 120px;
+        max-height: 120px;
     }
 }

@@ -92,7 +92,7 @@ function findStates()
 function addPersonCard(element, div, isState)
 {
     const newDiv = document.createElement('div');
-    newDiv.className = 'block';
+    newDiv.className = 'card-block';
     
     const newImg = document.createElement('img');
     newImg.src = 'images/' + element.image;
@@ -104,10 +104,19 @@ function addPersonCard(element, div, isState)
         transformState(element);
     });
     newDiv.appendChild(newImg);
-    const newSpan = document.createElement('span');
-    newSpan.className = 'text';
+    
+    let newSpan = document.createElement('span');
+    newSpan.className = 'mini-card-name';
     newSpan.textContent = element.name;
     newDiv.appendChild(newSpan);
+
+    if (element.post)
+    {
+        newSpan = document.createElement('span');
+        newSpan.className = 'mini-card-description';
+        newSpan.textContent = element.post;
+        newDiv.appendChild(newSpan);
+    }
 
     div.appendChild(newDiv);
 }
@@ -132,7 +141,7 @@ function goHome()
     //Удаляем жезл снизу
     const rod = document.getElementById('rod');
     if (rod)
-        rod.removeEventListener();
+        rod.style.display = 'none';
 
     pic.src = 'main/main-1024.svg';
     pic.className = 'startMainPicture';
@@ -142,7 +151,7 @@ function goHome()
     divRow.innerHTML = "";
     const states = findStates();
     states.forEach(element => {
-        addPersonCard(element, divRow);
+        addPersonCard(element, divRow, true);
     });
 }
 
@@ -222,19 +231,15 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
     {
         const rod = document.getElementById('rod');
         if (rod)
-            rod.remove();
+            rod.style.display='none';
         removeIcon();
     }
     else
     {
-        if (!document.getElementById('rod'))
+        if (document.getElementById('rod'))
         {
-            // Вставляем жезл после главного окна
-            const newRod = document.createElement('img');
-            newRod.id = 'rod';
-            newRod.src = 'main/rod-mini.svg'
-            // Вставка нового элемента сразу после referenceElement
-            document.getElementById('forRod').insertAdjacentElement('afterend', newRod);
+            // Отображаем жезл после главного окна
+            document.getElementById('rod').style.display = 'block';
         }
         if (isState)
             return;
