@@ -6,11 +6,11 @@ function updateArrowVisibility(isNotVisible) {
     const rightArrow = document.getElementById('right-arrow');
 
     if (isNotVisible) {
-        leftArrow.style.display = 'block';
-        rightArrow.style.display = 'block';
+        leftArrow.style.visibility = 'visible';
+        rightArrow.style.visibility = 'visible';
     } else {
-        leftArrow.style.display = 'none';
-        rightArrow.style.display = 'none';
+        leftArrow.style.visibility = 'hidden';
+        rightArrow.style.visibility = 'hidden';
     }
 }
 
@@ -89,15 +89,17 @@ function findStates()
     return global.inputArray.filter(state => !state.parent);
 }
 
-function addPersonCard(element, div)
+function addPersonCard(element, div, isState)
 {
     const newDiv = document.createElement('div');
     newDiv.className = 'block';
     
     const newImg = document.createElement('img');
     newImg.src = 'images/' + element.image;
-    newImg.style.borderRadius = '50%'; /* Для округления картинки */
-    newImg.className = "state-image";
+    if (isState)
+        newImg.className = "state-image";
+    else
+        newImg.className = "mini-card-image";
     newImg.addEventListener('click', () => {
         transformState(element);
     });
@@ -130,16 +132,17 @@ function goHome()
     //Удаляем жезл снизу
     const rod = document.getElementById('rod');
     if (rod)
-        rod.remove();
+        rod.removeEventListener();
 
     pic.src = 'main/main-1024.svg';
     pic.className = 'startMainPicture';
-    const div = document.getElementById('row-childs');
+    const divRow = document.getElementById('row-childs');
+    divRow.style.gap = '10vw';
     // Удаление всех элементов из div с помощью innerHTML
-    div.innerHTML = "";
+    divRow.innerHTML = "";
     const states = findStates();
     states.forEach(element => {
-        addPersonCard(element, div);
+        addPersonCard(element, divRow);
     });
 }
 
@@ -193,6 +196,7 @@ function transformState(obj)
     newSpanDescription.textContent = obj.post;
      
     const divRow = document.getElementById('row-childs');
+    divRow.style.gap = '5vw';
     // Удаление всех элементов из div с помощью innerHTML
     divRow.innerHTML = "";
     const childs = findChilds(obj.id);
@@ -228,7 +232,7 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
             // Вставляем жезл после главного окна
             const newRod = document.createElement('img');
             newRod.id = 'rod';
-            newRod.src = 'main/rod-1440.png'
+            newRod.src = 'main/rod-mini.svg'
             // Вставка нового элемента сразу после referenceElement
             document.getElementById('forRod').insertAdjacentElement('afterend', newRod);
         }

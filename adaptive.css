@@ -25,3 +25,11 @@
         margin-top: 77;
     }
 }
+@media (max-width: 320px)
+{
+    #rod{
+        margin-top: 2vw;
+        width: 12px;
+        height: 57px;
+    }
+}

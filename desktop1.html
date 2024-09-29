@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="eng">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Witcher's world</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="adaptive.css">
-    <body>
-        <div class="container">
-            <div id = "rowMain" class="row">
+
+<body>
+    <div class="container">
+        <div class='back-button-container'>
+            <button id="left-button" class="back-button">Back</button>
+            <div class="underline"></div>
+        </div>
+        <div id="main-card">
+            <div id="row-main" class="row">
                 <button id="left-arrow" class="image-button">
-                    <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow"/>
+                    <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
                 </button>
-                <div id="main-card">
-                    <div id="start-pic">
-                        <img id="main-pic" src="main/main-1024.svg" alt="lala" class="startMainPicture">
-                    </div>
-                </div>
+                <img id="main-pic" src="main/main-1024.svg" alt="lala" class="startMainPicture">
                 <button id="right-arrow" class="image-button">
-                    <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow"/>
+                    <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
                 </button>
-                <button id="left-button" class="text-button">Back</button>
-                <button id="right-button" class="image-button">
-                    <img src="buttons/logoStart.png" alt="Кнопка" class="corner-image"/>
-                </button>
-            </div>
-            <div id="forRod">
-            </div>
-            <div id="row-childs" class="row">
-                <div class="block">
-                    <img id=1 src="images/nilfgaard.jpg" alt="ata" class="state-image">
-                    <span class="label-card" class="text">Nilfgaard</span>
-                </div>
-                <div class="block">
-                    <img id = 2 src="images/redania.jpg" alt="ata" class="state-image">
-                    <span class="label-card" class="text">Redania</span>
-                </div>
-                <div class="block">
-                    <img id = 3 src="images/skellige.jpg" alt="ata" class="state-image">
-                    <span class="label-card" class="text">Skellige</span>
-                </div>
             </div>
         </div>
-        <script src="input.js"></script>
-        <script src="main.js"></script>
-    </body>
+        <button id="right-button" class="image-button">
+            <img src="buttons/logoStart.png" alt="Кнопка" class="corner-image" />
+        </button>
+    <div id="forRod"></div>
+    <div id="row-childs" class="row">
+        <div class="block">
+            <img id=1 src="images/nilfgaard.jpg" alt="ata" class="state-image">
+            <span class="label-card" class="text">Nilfgaard</span>
+        </div>
+        <div class="block">
+            <img id=2 src="images/redania.jpg" alt="ata" class="state-image">
+            <span class="label-card" class="text">Redania</span>
+        </div>
+        <div class="block">
+            <img id=3 src="images/skellige.jpg" alt="ata" class="state-image">
+            <span class="label-card" class="text">Skellige</span>
+        </div>
+    </div>
+    </div>
+    <script src="input.js"></script>
+    <script src="main.js"></script>
+</body>
+
 </html>
