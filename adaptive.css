@@ -31,6 +31,26 @@
     }
 }
 
+@media (max-width: 530px)
+{
+    .back-button-container {
+        top: 7vw;
+    }
+    #right-button
+    {
+        top: 7vw;
+    }
+    .startMainPicture
+    {
+        width: 82vw;
+        height: auto;
+    }
+    .notStartMainPicture
+    {
+        width: 67vw;
+    }
+}
+
 @media (max-width: 320px)
 {
     .back-button-container {

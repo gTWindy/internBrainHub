@@ -171,17 +171,18 @@ body {
     font-size: 17px;
 }
 
-#icon 
+/*Иконка-сколько-детей у главной карточки*/
+.icon 
 {
     position: absolute;
-    bottom: 20px;
-    left: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translate(-0%, -100%);
 }
 
-#text-icon-number {
+/*Текст числа детей*/
+.text-icon-number {
     position: absolute;
     top: 50%;
     left: 50%;

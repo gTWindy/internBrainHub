@@ -91,9 +91,12 @@ function findStates()
 
 function addPersonCard(element, div, isState)
 {
-    const newDiv = document.createElement('div');
-    newDiv.className = 'card-block';
+    const newDivCard = document.createElement('div');
+    newDivCard.className = 'card-block';
     
+    const newDivPic = document.createElement('div');
+    newDivPic.className = 'pic-div';
+
     const newImg = document.createElement('img');
     newImg.src = 'images/' + element.image;
     if (isState)
@@ -103,22 +106,22 @@ function addPersonCard(element, div, isState)
     newImg.addEventListener('click', () => {
         transformState(element);
     });
-    newDiv.appendChild(newImg);
+    newDivCard.appendChild(newImg);
     
     let newSpan = document.createElement('span');
     newSpan.className = 'mini-card-name';
     newSpan.textContent = element.name;
-    newDiv.appendChild(newSpan);
+    newDivCard.appendChild(newSpan);
 
     if (element.post)
     {
         newSpan = document.createElement('span');
         newSpan.className = 'mini-card-description';
         newSpan.textContent = element.post;
-        newDiv.appendChild(newSpan);
+        newDivCard.appendChild(newSpan);
     }
 
-    div.appendChild(newDiv);
+    div.appendChild(newDivCard);
 }
 
 // Переходим на начальную страницу
@@ -215,6 +218,25 @@ function transformState(obj)
     });
 }
 
+/*Добавляем иконку*/
+function addIcon(countOfChildren, div) {
+    const newIconDiv = document.createElement('div');
+    newIconDiv.className = 'icon';
+
+    const newIconPic = document.createElement('img');
+    newIconPic.className = 'icon-number'
+    newIconPic.src = 'buttons/icon_number.png';
+    newIconDiv.appendChild(newIconPic);
+
+    const newTextIcon = document.createElement('span');
+    newTextIcon.classList.add('text-icon-number');
+    newTextIcon.classList.add('text');
+    newTextIcon.textContent = countOfChildren;
+
+    newIconDiv.appendChild(newTextIcon);
+    div.appendChild(newIconDiv);
+}
+
 //Добавляем или удаляем элементы в зависимости от кол-ва детей
 function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
 {
@@ -245,21 +267,7 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
             return;
         if (!document.getElementById('icon'))
         {
-            const newIconDiv = document.createElement('div');
-            newIconDiv.id = 'icon';
-
-            const newIconPic = document.createElement('img');
-            newIconPic.id = 'icon-number'
-            newIconPic.src = 'buttons/icon_number.png';
-            newIconDiv.appendChild(newIconPic);
-
-            const newTextIcon = document.createElement('span');
-            newTextIcon.className = 'text';
-            newTextIcon.id = 'text-icon-number';
-            newTextIcon.textContent = countOfChildren;
-            
-            newIconDiv.appendChild(newTextIcon);
-            document.getElementById('main-pic').appendChild(newIconDiv);
+            addIcon(countOfChildren, document.getElementById('main-pic-div'));
         }
         else
         {
