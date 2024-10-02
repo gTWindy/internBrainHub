@@ -106,7 +106,10 @@ function addPersonCard(element, div, isState)
     newImg.addEventListener('click', () => {
         transformState(element);
     });
-    newDivCard.appendChild(newImg);
+    let childCardPicDiv = document.createElement('div');
+    childCardPicDiv.style.position = 'relative';
+    newDivCard.appendChild(childCardPicDiv);
+    childCardPicDiv.appendChild(newImg);
     
     let newSpan = document.createElement('span');
     newSpan.className = 'mini-card-name';
@@ -119,6 +122,13 @@ function addPersonCard(element, div, isState)
         newSpan.className = 'mini-card-description';
         newSpan.textContent = element.post;
         newDivCard.appendChild(newSpan);
+    }
+
+    if(!isState)
+    {
+        const countOfChildren = findChilds(element.id).length;
+        if (countOfChildren)
+            addIcon(countOfChildren, childCardPicDiv);
     }
 
     div.appendChild(newDivCard);
@@ -219,9 +229,12 @@ function transformState(obj)
 }
 
 /*Добавляем иконку*/
-function addIcon(countOfChildren, div) {
+function addIcon(countOfChildren, div, iconDivId) {
     const newIconDiv = document.createElement('div');
     newIconDiv.className = 'icon';
+
+    if(iconDivId)
+        newIconDiv.id = iconDivId;
 
     const newIconPic = document.createElement('img');
     newIconPic.className = 'icon-number'
@@ -242,7 +255,7 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
 {
     let removeIcon = ()=>
     {
-        const iconDiv = document.getElementById('icon');
+        const iconDiv = document.getElementById('icon-div');
         if (iconDiv)
             iconDiv.remove();
     }
@@ -265,13 +278,17 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
         }
         if (isState)
             return;
-        if (!document.getElementById('icon'))
+        let iconDiv = document.getElementById('icon-div');
+        if (!iconDiv)
         {
-            addIcon(countOfChildren, document.getElementById('main-pic-div'));
+            iconDiv = document.createElement('div');
+            iconDiv.id = 'icon-div';
+            document.getElementById('main-pic-div').appendChild(iconDiv);
+            addIcon(countOfChildren, iconDiv, 'main-icon-div');
         }
         else
         {
-            const countOfChildrenText = document.getElementById('text-icon-number');
+            const countOfChildrenText = iconDiv.getElementsByTagName('span')[0];
             countOfChildrenText.textContent = countOfChildren;
         }
 

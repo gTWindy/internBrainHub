@@ -99,6 +99,12 @@
         max-width: 120px;
         max-height: 120px;
     }
+    /*картинка иконки*/
+    .icon-number 
+    {
+        width: 30px;
+        height: 33px;
+    }
     .label-card
     {
         font-size: 19;

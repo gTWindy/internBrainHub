@@ -139,6 +139,12 @@ body {
     margin-top: 67px;
 }
 
+/*Контейнер для хранения картинки вместе с эконкой*/
+#main-pic-div
+{
+    position: relative;
+}
+
 /*Клас главной стартовой картинки*/
 .startMainPicture
 {
@@ -161,6 +167,24 @@ body {
     border-color : #DBAE64;
 }
 
+/*Контейнер с иконкой-сколько-детей*/
+.icon 
+{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 65%;
+    left: 0%;
+}
+
+/*Контейнер с иконкой для главной карточки*/
+#main-icon-div
+{
+    top: 85%;
+    left: 12%;
+}
+
 /*Имя главной карточки */
 #main-text {
     font-size: 61px;
@@ -171,15 +195,7 @@ body {
     font-size: 17px;
 }
 
-/*Иконка-сколько-детей у главной карточки*/
-.icon 
-{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translate(-0%, -100%);
-}
+
 
 /*Текст числа детей*/
 .text-icon-number {
@@ -239,7 +255,6 @@ body {
 /*Имя мини карточки*/
 .mini-card-name
 {
-    background: none;
     border: none;
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
     color: transparent;
@@ -247,6 +262,7 @@ body {
     text-decoration: underline;
     font-family: 'Crimson Text', serif;
     font-size: 26px;
+    margin-top: 40px;
 }
 
 /*Описание мини карточки*/
