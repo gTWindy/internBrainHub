@@ -2,7 +2,7 @@
 {
     body
     {
-        background-size: initial;
+        background-image: url('bg/bg-1024.png');
     }
     .startMainPicture
     {
@@ -19,6 +19,10 @@
 
 @media (max-width: 768px)
 {
+    body
+    {
+        background-image: url('bg/bg-768.png');
+    }
     .startMainPicture
     {
         max-width: 444px;
@@ -33,6 +37,10 @@
 
 @media (max-width: 530px)
 {
+    body
+    {
+        background-image: url('bg/bg-320.png');
+    }
     .back-button-container {
         top: 7vw;
     }
@@ -42,17 +50,21 @@
     }
     .startMainPicture
     {
-        width: 82vw;
+        width: 80vw;
         height: auto;
     }
     .notStartMainPicture
     {
-        width: 67vw;
+        width: 66vw;
     }
 }
 
 @media (max-width: 320px)
 {
+    .body
+    {
+        background-size: 320px auto;
+    }
     .back-button-container {
         top: 36px;
     }
@@ -89,11 +101,6 @@
     #main-text {
         font-size: 41px;
     }
-    #row-childs
-    {
-        margin-top: 2vw;
-        gap: 5px;
-    }
     .state-image
     {
         max-width: 120px;
@@ -113,11 +120,20 @@
     {
         background-image: url('main/rod-mini.svg');
         height: 55px;
-        margin-top: 2vw;
+        margin-top: 5vw;
+    }
+    #row-childs
+    {
+        margin-top: 5vw;
+        gap: 5px;
     }
     .mini-card-image 
     {
         max-width: 120px;
         max-height: 120px;
+    }
+    .mini-card-name
+    {
+        margin-top: 23px;
     }
 }
