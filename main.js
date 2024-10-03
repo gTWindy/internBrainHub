@@ -6,11 +6,11 @@ function updateArrowVisibility(isNotVisible) {
     const rightArrow = document.getElementById('right-arrow');
 
     if (isNotVisible) {
-        leftArrow.style.display = 'block';
-        rightArrow.style.display = 'block';
+        leftArrow.style.visibility = 'visible';
+        rightArrow.style.visibility = 'visible';
     } else {
-        leftArrow.style.display = 'none';
-        rightArrow.style.display = 'none';
+        leftArrow.style.visibility = 'hidden';
+        rightArrow.style.visibility = 'hidden';
     }
 }
 
@@ -89,25 +89,49 @@ function findStates()
     return global.inputArray.filter(state => !state.parent);
 }
 
-function addPersonCard(element, div)
+function addPersonCard(element, div, isState)
 {
-    const newDiv = document.createElement('div');
-    newDiv.className = 'block';
+    const newDivCard = document.createElement('div');
+    newDivCard.className = 'card-block';
     
+    const newDivPic = document.createElement('div');
+    newDivPic.className = 'pic-div';
+
     const newImg = document.createElement('img');
     newImg.src = 'images/' + element.image;
-    newImg.style.borderRadius = '50%'; /* Для округления картинки */
-    newImg.className = "state-image";
+    if (isState)
+        newImg.className = "state-image";
+    else
+        newImg.className = "mini-card-image";
     newImg.addEventListener('click', () => {
         transformState(element);
     });
-    newDiv.appendChild(newImg);
-    const newSpan = document.createElement('span');
-    newSpan.className = 'text';
+    let childCardPicDiv = document.createElement('div');
+    childCardPicDiv.style.position = 'relative';
+    newDivCard.appendChild(childCardPicDiv);
+    childCardPicDiv.appendChild(newImg);
+    
+    let newSpan = document.createElement('span');
+    newSpan.className = 'mini-card-name';
     newSpan.textContent = element.name;
-    newDiv.appendChild(newSpan);
+    newDivCard.appendChild(newSpan);
 
-    div.appendChild(newDiv);
+    if (element.post)
+    {
+        newSpan = document.createElement('span');
+        newSpan.className = 'mini-card-description';
+        newSpan.textContent = element.post;
+        newDivCard.appendChild(newSpan);
+    }
+
+    if(!isState)
+    {
+        const countOfChildren = findChilds(element.id).length;
+        if (countOfChildren)
+            addIcon(countOfChildren, childCardPicDiv);
+    }
+
+    div.appendChild(newDivCard);
 }
 
 // Переходим на начальную страницу
@@ -115,7 +139,7 @@ function goHome()
 {
     updateButtonVisibility(false);
     addElementsForWhoHasChildren(0);
-    let pic = document.getElementById('mainPic');
+    let pic = document.getElementById('main-pic');
     
     //Удаляем имя снизу
     const mainText = document.getElementById('main-text');
@@ -130,17 +154,17 @@ function goHome()
     //Удаляем жезл снизу
     const rod = document.getElementById('rod');
     if (rod)
-        rod.remove();
+        rod.style.display = 'none';
 
-    pic.src = 'main/main-1024.png';
-    pic.style.borderRadius = '0%';
-    pic.style.border = '';
-    const div = document.getElementById('rowChilds');
+    pic.src = 'main/main-1024.svg';
+    pic.className = 'startMainPicture';
+    const divRow = document.getElementById('row-childs');
+    divRow.style.gap = '10vw';
     // Удаление всех элементов из div с помощью innerHTML
-    div.innerHTML = "";
+    divRow.innerHTML = "";
     const states = findStates();
     states.forEach(element => {
-        addPersonCard(element, div);
+        addPersonCard(element, divRow, true);
     });
 }
 
@@ -166,13 +190,10 @@ function transformState(obj)
     hideArrows();
 
     let divMain = document.getElementById('main');
-    const pic = document.getElementById('mainPic');
+    const pic = document.getElementById('main-pic');
     console.log(pic);
     pic.src = 'images/' + obj.image;
-    pic.style.borderRadius = '50%';
-    
-    pic.style.border = '2px solid transparent';
-    pic.style.borderColor = '#DBAE64';
+    pic.className = 'notStartMainPicture';
 
     //Имя карточки
     let newSpanMain = document.getElementById('main-text');
@@ -196,7 +217,8 @@ function transformState(obj)
     }
     newSpanDescription.textContent = obj.post;
      
-    const divRow = document.getElementById('rowChilds');
+    const divRow = document.getElementById('row-childs');
+    divRow.style.gap = '5vw';
     // Удаление всех элементов из div с помощью innerHTML
     divRow.innerHTML = "";
     const childs = findChilds(obj.id);
@@ -206,12 +228,34 @@ function transformState(obj)
     });
 }
 
+/*Добавляем иконку*/
+function addIcon(countOfChildren, div, iconDivId) {
+    const newIconDiv = document.createElement('div');
+    newIconDiv.className = 'icon';
+
+    if(iconDivId)
+        newIconDiv.id = iconDivId;
+
+    const newIconPic = document.createElement('img');
+    newIconPic.className = 'icon-number'
+    newIconPic.src = 'buttons/icon_number.png';
+    newIconDiv.appendChild(newIconPic);
+
+    const newTextIcon = document.createElement('span');
+    newTextIcon.classList.add('text-icon-number');
+    newTextIcon.classList.add('text');
+    newTextIcon.textContent = countOfChildren;
+
+    newIconDiv.appendChild(newTextIcon);
+    div.appendChild(newIconDiv);
+}
+
 //Добавляем или удаляем элементы в зависимости от кол-ва детей
 function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
 {
     let removeIcon = ()=>
     {
-        const iconDiv = document.getElementById('icon');
+        const iconDiv = document.getElementById('icon-div');
         if (iconDiv)
             iconDiv.remove();
     }
@@ -222,43 +266,29 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
     {
         const rod = document.getElementById('rod');
         if (rod)
-            rod.remove();
+            rod.style.display='none';
         removeIcon();
     }
     else
     {
-        if (!document.getElementById('rod'))
+        if (document.getElementById('rod'))
         {
-            // Вставляем жезл после главного окна
-            const newRod = document.createElement('img');
-            newRod.id = 'rod';
-            newRod.src = 'main/rod-1440.png'
-            // Вставка нового элемента сразу после referenceElement
-            document.getElementById('forRod').insertAdjacentElement('afterend', newRod);
+            // Отображаем жезл после главного окна
+            document.getElementById('rod').style.display = 'block';
         }
         if (isState)
             return;
-        if (!document.getElementById('icon'))
+        let iconDiv = document.getElementById('icon-div');
+        if (!iconDiv)
         {
-            const newIconDiv = document.createElement('div');
-            newIconDiv.id = 'icon';
-
-            const newIconPic = document.createElement('img');
-            newIconPic.id = 'icon-number'
-            newIconPic.src = 'buttons/icon_number.png';
-            newIconDiv.appendChild(newIconPic);
-
-            const newTextIcon = document.createElement('span');
-            newTextIcon.className = 'text';
-            newTextIcon.id = 'text-icon-number';
-            newTextIcon.textContent = countOfChildren;
-            
-            newIconDiv.appendChild(newTextIcon);
-            document.getElementById('main-pic').appendChild(newIconDiv);
+            iconDiv = document.createElement('div');
+            iconDiv.id = 'icon-div';
+            document.getElementById('main-pic-div').appendChild(iconDiv);
+            addIcon(countOfChildren, iconDiv, 'main-icon-div');
         }
         else
         {
-            const countOfChildrenText = document.getElementById('text-icon-number');
+            const countOfChildrenText = iconDiv.getElementsByTagName('span')[0];
             countOfChildrenText.textContent = countOfChildren;
         }
 

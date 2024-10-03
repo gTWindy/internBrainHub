@@ -1,95 +1,139 @@
-@media (max-width: 380px) {
-    .image-button .corner-image {
-        width: 70px;
+@media (max-width: 1024px)
+{
+    body
+    {
+        background-image: url('bg/bg-1024.png');
+    }
+    .startMainPicture
+    {
+        max-width: 284px;
+        max-height: 257px;
+        top: 85px;
+    }
+    #row-childs
+    {
+        margin-top: 77;
+        gap: 44px;
+    }
+}
+
+@media (max-width: 768px)
+{
+    body
+    {
+        background-image: url('bg/bg-768.png');
+    }
+    .startMainPicture
+    {
+        max-width: 444px;
+        max-height: 401px;
+        margin-top: 123px;
+    }
+    #row-childs
+    {
+        margin-top: 2vw;
+    }
+}
+
+@media (max-width: 530px)
+{
+    body
+    {
+        background-image: url('bg/bg-320.png');
+    }
+    .back-button-container {
+        top: 7vw;
+    }
+    #right-button
+    {
+        top: 7vw;
+    }
+    .startMainPicture
+    {
+        width: 80vw;
         height: auto;
     }
-}
-
-@media (max-width: 720px) {
-    .button-main-image {
-        width: 85%;
-        height: auto;  /* Автоматическое изменение высоты */
-    }
-}
-
-@media (max-width: 400px) {
-    .button-main-image {
-        width: 80%;  /* Укажите нужный размер */
-        height: auto;  /* Автоматическое изменение высоты */
-    }
-}
-
-@media (max-width: 720px) {
-    #left-button
+    .notStartMainPicture
     {
-        position: absolute;
-        left: 6vw; /* Прилепить к правому краю */
-        top: 75px; /* Прилепить к верхнему краю */
-        background: none; /* Убираем фон */
-        border: none; /* Убираем рамку */
-        background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
-        color: transparent; /* Делаем текст прозрачным */
-        background-clip: text; /* Для остальных браузеров */
-        text-decoration: underline; /* Подчеркивание текста */
-        cursor: pointer; /* Указатель мыши */
-        padding: 0; /* Убираем отступы */
-        margin: 0; /* Убираем внешние отступы */
-        font-family: 'Crimson Text', serif; /* Указываем шрифт */
-        font-size: 25px;
+        width: 66vw;
     }
 }
 
-@media (max-width: 500px) {
-    #left-button
+@media (max-width: 320px)
+{
+    .body
     {
-        position: absolute;
-        left: 5vw; /* Прилепить к правому краю */
-        top: 5vw; /* Прилепить к верхнему краю */
-        background: none; /* Убираем фон */
-        border: none; /* Убираем рамку */
-        background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
-        color: transparent; /* Делаем текст прозрачным */
-        background-clip: text; /* Для остальных браузеров */
-        text-decoration: underline; /* Подчеркивание текста */
-        cursor: pointer; /* Указатель мыши */
-        padding: 0; /* Убираем отступы */
-        margin: 0; /* Убираем внешние отступы */
-        font-family: 'Crimson Text', serif; /* Указываем шрифт */
-        font-size: 20px;
+        background-size: 320px auto;
     }
-}
-
-@media (max-width: 720px) {
-    #right-button 
-    {
-    position: absolute;
-    right: 6vw; /* Прилепить к правому краю */
-    top: 6vw; /* Прилепить к верхнему краю */
+    .back-button-container {
+        top: 36px;
     }
-}
-
-@media (max-width: 380px) {
-    #right-button 
+    .back-button 
     {
-        position: absolute;
-        right: 5vw; /* Прилепить к правому краю */
-        top: 5vw; /* Прилепить к верхнему краю */
+        font-size: 17px;
     }
-}
-
-@media (max-width: 500px) {
-    #main-text
+    #right-button
     {
-        font-size: '41px';
+        top: 29px;
     }
-}
-
-@media (max-width: 500px) {
-    .main-image
+    #right-button img
     {
-        max-width: 85%;
-        height: auto;
+        width: 40px;
+        height: 36px;
+    }
+    .startMainPicture
+    {
+        max-width: 202px;
+        max-height: 181px;
+        margin-top: 60px;
+    }
+    .notStartMainPicture
+    {
+        max-width: 168px;
+        max-height: 168px;
         margin-top: 86px;
-        margin-bottom: 15px;
+    }
+    /*Стрелочки по бокам от главной карточки*/
+    .image-button .button-arrow {
+        width: 36px;
+        height: 36px;
+    }
+    #main-text {
+        font-size: 41px;
+    }
+    .state-image
+    {
+        max-width: 120px;
+        max-height: 120px;
+    }
+    /*картинка иконки*/
+    .icon-number 
+    {
+        width: 30px;
+        height: 33px;
+    }
+    .label-card
+    {
+        font-size: 19;
+    }
+    #rod
+    {
+        background-image: url('main/rod-mini.svg');
+        height: 55px;
+        margin-top: 5vw;
+    }
+    #row-childs
+    {
+        margin-top: 5vw;
+        gap: 5px;
+    }
+    .mini-card-image 
+    {
+        max-width: 120px;
+        max-height: 120px;
+    }
+    .mini-card-name
+    {
+        margin-top: 23px;
     }
 }
