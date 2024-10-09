@@ -1,139 +1,133 @@
-@media (max-width: 1024px)
-{
-    body
-    {
+@media (max-width: 1024px) {
+    body {
         background-image: url('bg/bg-1024.png');
     }
-    .startMainPicture
-    {
+
+    .startMainPicture {
         max-width: 284px;
         max-height: 257px;
         top: 85px;
     }
-    #row-childs
-    {
+
+    #row-childs {
         margin-top: 77;
         gap: 44px;
     }
 }
 
-@media (max-width: 768px)
-{
-    body
-    {
+@media (max-width: 768px) {
+    body {
         background-image: url('bg/bg-768.png');
     }
-    .startMainPicture
-    {
+
+    .startMainPicture {
         max-width: 444px;
         max-height: 401px;
         margin-top: 123px;
     }
-    #row-childs
-    {
+
+    #row-childs {
         margin-top: 2vw;
     }
 }
 
-@media (max-width: 530px)
-{
-    body
-    {
+@media (max-width: 530px) {
+    body {
         background-image: url('bg/bg-320.png');
     }
+
     .back-button-container {
         top: 7vw;
     }
-    #right-button
-    {
+
+    #right-button {
         top: 7vw;
     }
-    .startMainPicture
-    {
+
+    .startMainPicture {
         width: 80vw;
         height: auto;
     }
-    .notStartMainPicture
-    {
+
+    .notStartMainPicture {
         width: 66vw;
     }
 }
 
-@media (max-width: 320px)
-{
-    .body
-    {
+@media (max-width: 320px) {
+    .body {
         background-size: 320px auto;
     }
+
     .back-button-container {
         top: 36px;
     }
-    .back-button 
-    {
+
+    .back-button {
         font-size: 17px;
     }
-    #right-button
-    {
+
+    #right-button {
         top: 29px;
     }
-    #right-button img
-    {
+
+    #right-button img {
         width: 40px;
         height: 36px;
     }
-    .startMainPicture
-    {
+
+    .startMainPicture {
         max-width: 202px;
         max-height: 181px;
-        margin-top: 60px;
     }
-    .notStartMainPicture
-    {
+
+    .notStartMainPicture {
         max-width: 168px;
         max-height: 168px;
-        margin-top: 86px;
     }
+
     /*Стрелочки по бокам от главной карточки*/
     .image-button .button-arrow {
         width: 36px;
         height: 36px;
     }
+
     #main-text {
         font-size: 41px;
     }
-    .state-image
-    {
+
+    .state-image {
         max-width: 120px;
         max-height: 120px;
     }
+
     /*картинка иконки*/
-    .icon-number 
-    {
+    .icon-number {
         width: 30px;
         height: 33px;
     }
-    .label-card
-    {
+
+    .label-card {
         font-size: 19;
     }
-    #rod
-    {
+
+    #rod {
         background-image: url('main/rod-mini.svg');
         height: 55px;
         margin-top: 5vw;
     }
-    #row-childs
-    {
+
+    #row-childs {
         margin-top: 5vw;
         gap: 5px;
     }
-    .mini-card-image 
-    {
+
+    .mini-card-image {
         max-width: 120px;
         max-height: 120px;
     }
-    .mini-card-name
-    {
+
+    .mini-card-name {
         margin-top: 23px;
     }
 }

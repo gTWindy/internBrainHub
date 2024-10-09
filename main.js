@@ -77,17 +77,17 @@ function findStates() {
 
 function addPersonCard(element, div, isState) {
     const newDivCard = document.createElement('div');
-    newDivCard.className = 'card-block';
+    newDivCard.className = 'mini-card';
 
     const newDivPic = document.createElement('div');
     newDivPic.className = 'pic-div';
 
     const newImg = document.createElement('img');
     newImg.src = 'images/' + element.image;
+    newImg.className = "mini-card-image";
     if (isState)
-        newImg.className = "state-image";
-    else
-        newImg.className = "mini-card-image";
+        newImg.classList.add("mini-card-image--state");
+        
     newImg.addEventListener('click', () => {
         transformState(element);
     });
@@ -133,7 +133,7 @@ function goHome() {
     if (descriptionText)
         descriptionText.remove();
 
-    //Удаляем жезл снизу
+    // Удаляем жезл снизу
     const rod = document.getElementById('rod');
     if (rod)
         rod.style.display = 'none';
@@ -141,7 +141,8 @@ function goHome() {
     pic.src = 'main/main-1024.svg';
     pic.className = 'startMainPicture';
     const divRow = document.getElementById('row-childs');
-    divRow.style.gap = '10vw';
+    divRow.classList.add('childs-row--start');
+    divRow.classList.remove('childs-row--not-start');
     // Удаление всех элементов из div с помощью innerHTML
     divRow.innerHTML = "";
     const states = findStates();
@@ -150,9 +151,9 @@ function goHome() {
     });
 }
 
-//Делаем другого персонажа основным
+// Делаем другого персонажа основным
 function transformState(obj) {
-    //Добавляем кнопки сверху по краям
+    // Добавляем кнопки сверху по краям
     updateButtonVisibility(true);
 
     // Запоминаем текущий id
@@ -175,7 +176,7 @@ function transformState(obj) {
     pic.src = 'images/' + obj.image;
     pic.className = 'notStartMainPicture';
 
-    //Имя карточки
+    // Имя карточки
     let newSpanMain = document.getElementById('main-text');
     if (!newSpanMain) {
         newSpanMain = document.createElement('span');
@@ -185,7 +186,7 @@ function transformState(obj) {
     }
     newSpanMain.textContent = obj.name;
 
-    //Описание карточки
+    // Описание карточки
     let newSpanDescription = document.getElementById('description-text');
     if (!newSpanDescription) {
         newSpanDescription = document.createElement('span');
@@ -196,7 +197,8 @@ function transformState(obj) {
     newSpanDescription.textContent = obj.post;
 
     const divRow = document.getElementById('row-childs');
-    divRow.style.gap = '5vw';
+    divRow.classList.remove('childs-row--start');
+    divRow.classList.add('childs-row--not-start');
     // Удаление всех элементов из div с помощью innerHTML
     divRow.innerHTML = "";
     const childs = findChilds(obj.id);
@@ -206,7 +208,7 @@ function transformState(obj) {
     });
 }
 
-/*Добавляем иконку*/
+//Добавляем иконку
 function addIcon(countOfChildren, div, iconDivId) {
     const newIconDiv = document.createElement('div');
     newIconDiv.className = 'icon';
@@ -228,14 +230,14 @@ function addIcon(countOfChildren, div, iconDivId) {
     div.appendChild(newIconDiv);
 }
 
-//Добавляем или удаляем элементы в зависимости от кол-ва детей
+// Добавляем или удаляем элементы в зависимости от кол-ва детей
 function addElementsForWhoHasChildren(countOfChildren, isState, divMain) {
     let removeIcon = () => {
         const iconDiv = document.getElementById('icon-div');
         if (iconDiv)
             iconDiv.remove();
     }
-    //Если это государство, то удаляем иконку
+    // Если это государство, то удаляем иконку
     if (isState)
         removeIcon();
     if (!countOfChildren) {
@@ -266,10 +268,10 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain) {
     }
 }
 
-//Прячем стрелочки, если у карточки не братьев
+// Прячем стрелочки, если у карточки не братьев
 function hideArrows() {
     if (!parent)
-        return updateArrowVisibility(false);
+        return updateArrowVisibility(true);
 
     const condition = (element) => element.parent === parent.id;
     const count = global.inputArray.reduce((acc, element) => {

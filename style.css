@@ -32,8 +32,7 @@ body {
     font-size: 16px;
 }
 
-.text
-{
+.text {
     border: none;
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
     color: transparent;
@@ -74,7 +73,7 @@ body {
     height: 5px;
     width: 100%;
     height: 1px;
-    background-color:#DBAE64;
+    background-color: #DBAE64;
     z-index: 0;
     opacity: 20%;
 }
@@ -85,16 +84,14 @@ body {
 }
 
 /*Кнопка справа сверху*/
-#right-button 
-{
+#right-button {
     position: absolute;
     right: 7vw;
     top: 65px;
 }
 
 /*Картинка кнопки справа сверху*/
-#right-button img
-{
+#right-button img {
     width: 88px;
     height: 79px;
 }
@@ -121,17 +118,18 @@ body {
 }
 
 /*Контейнер для основной карточки вместе со стрелочками*/
-#row-main{
+.main-row {
     display: flex;
     align-items: center;
     width: 100%;
+    margin-top: 67px;
 }
 
 /*Левая стрелочка*/
 #left-arrow {
     margin-left: 7vw;
     margin-right: 10px;
-    margin-top:67px;
+
 }
 
 /*Правая стрелочка*/
@@ -139,22 +137,18 @@ body {
     transform: rotate(180deg);
     margin-left: 10px;
     margin-right: 7vw;
-    margin-top: 67px;
 }
 
-/*Контейнер для хранения картинки вместе с эконкой*/
-#main-pic-div
-{
+/*Контейнер для хранения картинки вместе с иконкой*/
+#main-pic-div {
     position: relative;
 }
 
 /*Клас главной стартовой картинки*/
-.startMainPicture
-{
+.startMainPicture {
     max-width: 380px;
     max-height: 345px;
     width: 100%;
-    margin-top: 102px;
 }
 
 /*Клас главной картинки*/
@@ -164,15 +158,13 @@ body {
     max-width: 359px;
     max-height: 359px;
     width: 100%;
-    margin-top: 67px;
-    border-radius : 50%;
-    border : 2px solid transparent;
-    border-color : #DBAE64;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-color: #DBAE64;
 }
 
 /*Контейнер с иконкой-сколько-детей*/
-.icon 
-{
+.icon {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -182,8 +174,7 @@ body {
 }
 
 /*Контейнер с иконкой для главной карточки*/
-#main-icon-div
-{
+#main-icon-div {
     top: 85%;
     left: 12%;
 }
@@ -198,8 +189,6 @@ body {
     font-size: 17px;
 }
 
-
-
 /*Текст числа детей*/
 .text-icon-number {
     position: absolute;
@@ -209,9 +198,8 @@ body {
 }
 
 /*Жезл между родителем и его детьми*/
-#rod
-{
-    display: none; 
+#rod {
+    display: none;
     background-image: url('main/rod-big.png');
     width: 13px;
     height: 130px;
@@ -219,34 +207,30 @@ body {
 }
 
 /*Контейнер для мини карточек снизу*/
-#row-childs
-{
+.childs-row {
     flex-wrap: wrap;
     margin-top: 4vw;
-    gap: 111px;
+}
+
+/*Контейнер для мини карточек снизу при старте*/
+.childs-row--start {
+    gap: 10vw;
+}
+
+/*Контейнер для мини карточек снизу не при старте*/
+.childs-row--not-start {
+    gap: 5vw;
 }
 
 /*Контейнер одной мини карточки*/
-.card-block {
+.mini-card {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/*Картинка государства в мини карточках*/
-.state-image
-{
-    width: 188px;
-    height: 188px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid transparent;
-    border-color: #DBAE64;
-}
-
 /*Картинки персонажей в мини карточках*/
-.mini-card-image
-{
+.mini-card-image {
     width: 166px;
     height: auto;
     border-radius: 50%;
@@ -255,9 +239,14 @@ body {
     border-color: #DBAE64;
 }
 
+/*Картинка государства в мини карточках*/
+.mini-card-image--state {
+    width: 188px;
+    height: 188px;
+}
+
 /*Имя мини карточки*/
-.mini-card-name
-{
+.mini-card-name {
     border: none;
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
     color: transparent;
@@ -269,8 +258,7 @@ body {
 }
 
 /*Описание мини карточки*/
-.mini-card-description
-{
+.mini-card-description {
     border: none;
     background: linear-gradient(180deg, #FFD28D 47.92%, #352000 100%);
     color: transparent;
