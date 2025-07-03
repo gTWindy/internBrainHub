@@ -20,8 +20,7 @@
     }
 
     .mini-card--not-start {
-        width: 225px;
-        height: 352px;
+        width: 228px;
     }
 
     .mini-card-description {
@@ -52,26 +51,30 @@
         margin-bottom: 162px;
     }
 
+    .mini-card--not-start {
+        width: 234px;
+    }
+
     .text-icon-number {
         font-size: 29px;
     }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 600px) {
     body {
         background-image: url('bg/bg-320.png');
     }
 
     .main-row {
         min-width: 320px;
-        width: 98vw;
+        width: 90vw;
     }
 
     .back-button-container {
         top: 7vw;
     }
 
-    #right-button {
+    .image-button__right-button {
         top: 7vw;
     }
 
@@ -117,11 +120,11 @@
         font-size: 17px;
     }
 
-    #right-button {
+    .image-button__right-button {
         top: 29px;
     }
 
-    #right-button img {
+    .image-button__right-button img {
         width: 40px;
         height: 36px;
     }
@@ -180,7 +183,7 @@
     .mini-card--not-start {
         padding-top: 29px;
         width: 133px;
-        height: 224px;
+        height: 223px;
     }
 
     .mini-card-image {

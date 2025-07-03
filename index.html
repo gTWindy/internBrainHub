@@ -10,45 +10,44 @@
     <link rel="icon" href="main/main-1024.png" type="image/x-icon">
 
 <body>
-    <div class="container">
-        <div class='back-button-container'>
-            <button id="left-button" class="back-button">Back</button>
-            <div class="underline"></div>
-        </div>
-        <div id="main-card">
-            <div class="row main-row main-row--start">
-                <button id="left-arrow" class="image-button">
-                    <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
-                </button>
-                <div class='main-card_pic'>
-                    <img id="main-pic" src="main/main-1024.svg" alt="lala" class="startMainPicture">
-                </div>
-                <button id="right-arrow" class="image-button">
-                    <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
-                </button>
-            </div>
-        </div>
-        <button id="right-button" class="image-button">
-            <img src="buttons/logoStart.png" alt="Кнопка" class="corner-image" />
-        </button>
-        <div class="rod" style='display: none; justify-content: center;'>
-        </div>
-        <div class="row childs-row childs-row--start">
-            <div class="mini-card">
-                <img id=1 src="images/nilfgaard.jpg" alt="Nilfgaard" class="mini-card-image mini-card-image--state">
-                <span class="mini-card-name" class="text">Nilfgaard</span>
-            </div>
-            <div class="mini-card">
-                <img id=2 src="images/redania.jpg" alt="Redania" class="mini-card-image mini-card-image--state">
-                <span class="mini-card-name" class="text">Redania</span>
-            </div>
-            <div class="mini-card">
-                <img id=3 src="images/skellige.jpg" alt="Skellige" class="mini-card-image mini-card-image--state">
-                <span class="mini-card-name" class="text">Skellige</span>
-            </div>
-        </div>
-        <div class="row childs-row childs-row--not-start" style="position: absolute;"></div>
+    <div class='back-button-container'>
+        <button class="back-button back-button__left-button">Back</button>
+        <div class="underline"></div>
     </div>
+    <div class="main-card">
+        <div class="row main-row main-row--start">
+            <button class="image-button image-button_left-arrow">
+                <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
+            </button>
+            <div class='main-card__pic'>
+                <img id="main-pic" src="main/main-1024.svg" alt="lala" class="startMainPicture">
+            </div>
+            <button class="image-button image-button_right-arrow">
+                <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
+            </button>
+        </div>
+    </div>
+    <button class="image-button image-button__right-button">
+        <img src="buttons/logoStart.png" alt="Кнопка" class="corner-image" />
+    </button>
+    <div class="rod" style='display: none; justify-content: center;'>
+    </div>
+    <div class="row childs-row childs-row--start">
+        <div class="mini-card">
+            <img id=1 src="images/nilfgaard.jpg" alt="Nilfgaard" class="mini-card-image mini-card-image--state">
+            <span class="mini-card-name" class="text">Nilfgaard</span>
+        </div>
+        <div class="mini-card">
+            <img id=2 src="images/redania.jpg" alt="Redania" class="mini-card-image mini-card-image--state">
+            <span class="mini-card-name" class="text">Redania</span>
+        </div>
+        <div class="mini-card">
+            <img id=3 src="images/skellige.jpg" alt="Skellige" class="mini-card-image mini-card-image--state">
+            <span class="mini-card-name" class="text">Skellige</span>
+        </div>
+    </div>
+    <div class="row childs-row childs-row--not-start" style="position: absolute;"></div>
+
     <script src="input.js"></script>
     <script src="main.js"></script>
 </body>

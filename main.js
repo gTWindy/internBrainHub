@@ -2,12 +2,12 @@ let parent = null;
 let currentId = -1;
 const divRowStart = document.getElementsByClassName('childs-row--start')[0];
 const divRowNotStart = document.getElementsByClassName('childs-row--not-start')[0];
-const mainCardPic = document.getElementsByClassName('main-card_pic')[0];
+const mainCardPic = document.getElementsByClassName('main-card__pic')[0];
 const mainRow = document.getElementsByClassName('main-row')[0];
 
 function updateArrowVisibility(isNotVisible) {
-    const leftArrow = document.getElementById('left-arrow');
-    const rightArrow = document.getElementById('right-arrow');
+    const leftArrow = document.getElementsByClassName('image-button_left-arrow')[0];
+    const rightArrow = document.getElementsByClassName('image-button_right-arrow')[0];
 
     if (isNotVisible) {
         leftArrow.style.display = 'block';
@@ -21,8 +21,8 @@ function updateArrowVisibility(isNotVisible) {
 }
 
 function updateButtonVisibility(isNotVisible) {
-    const leftButton = document.getElementById('left-button');
-    const rightButton = document.getElementById('right-button');
+    const leftButton = document.getElementsByClassName('back-button__left-button')[0];
+    const rightButton = document.getElementsByClassName('image-button__right-button')[0];
 
     if (isNotVisible) {
         leftButton.style.display = 'block';
@@ -38,10 +38,10 @@ function updateButtonVisibility(isNotVisible) {
 updateButtonVisibility(false);
 
 // Добавляем прослушку
-const rightButton = document.getElementById('right-button');
+const rightButton = document.getElementsByClassName('image-button__right-button')[0];
 rightButton.addEventListener('click', goHome);
 
-const leftButton = document.getElementById('left-button');
+const leftButton = document.getElementsByClassName('back-button__left-button')[0];
 leftButton.addEventListener('click', () => {
     parent ? transformState(parent) : goHome();
 });
@@ -64,11 +64,11 @@ function parallelTransition(isLeft) {
 }
 
 // Добавляем прослушку
-const leftButtonMain = document.getElementById('left-arrow');
+const leftButtonMain = document.getElementsByClassName('image-button_left-arrow')[0];
 leftButtonMain.addEventListener('click', () => {
     parallelTransition(true);
 });
-const rightButtonMain = document.getElementById('right-arrow');
+const rightButtonMain = document.getElementsByClassName('image-button_right-arrow')[0];
 rightButtonMain.addEventListener('click', () => {
     parallelTransition(false);
 });
@@ -188,7 +188,7 @@ function transformState(obj) {
         newSpanMain = document.createElement('span');
         newSpanMain.className = 'text';
         newSpanMain.id = 'main-text';
-        document.getElementById('main-card').appendChild(newSpanMain);
+        document.getElementsByClassName('main-card')[0].appendChild(newSpanMain);
     }
     newSpanMain.textContent = obj.name;
 
@@ -198,7 +198,7 @@ function transformState(obj) {
         newSpanDescription = document.createElement('span');
         newSpanDescription.className = 'text';
         newSpanDescription.id = 'description-text';
-        document.getElementById('main-card').appendChild(newSpanDescription);
+        document.getElementsByClassName('main-card')[0].appendChild(newSpanDescription);
     }
     newSpanDescription.textContent = obj.post;
 
@@ -268,7 +268,7 @@ function addElementsForWhoHasChildren(countOfChildren, isState) {
         if (!iconDiv) {
             iconDiv = document.createElement('div');
             iconDiv.id = 'icon-div';
-            document.getElementsByClassName('main-card_pic')[0].appendChild(iconDiv);
+            mainCardPic.appendChild(iconDiv);
             addIcon(countOfChildren, iconDiv, 'main-icon-div');
         }
         else {
