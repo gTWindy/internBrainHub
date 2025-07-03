@@ -1,16 +1,22 @@
 let parent = null;
 let currentId = -1;
+const divRowStart = document.getElementsByClassName('childs-row--start')[0];
+const divRowNotStart = document.getElementsByClassName('childs-row--not-start')[0];
+const mainCardPic = document.getElementsByClassName('main-card_pic')[0];
+const mainRow = document.getElementsByClassName('main-row')[0];
 
 function updateArrowVisibility(isNotVisible) {
     const leftArrow = document.getElementById('left-arrow');
     const rightArrow = document.getElementById('right-arrow');
 
     if (isNotVisible) {
-        leftArrow.style.visibility = 'visible';
-        rightArrow.style.visibility = 'visible';
+        leftArrow.style.display = 'block';
+        rightArrow.style.display = 'block';
+        mainRow.style.justifyContent = 'space-between';
     } else {
-        leftArrow.style.visibility = 'hidden';
-        rightArrow.style.visibility = 'hidden';
+        leftArrow.style.display = 'none';
+        rightArrow.style.display = 'none';
+        mainRow.style.justifyContent = 'center'
     }
 }
 
@@ -70,6 +76,7 @@ rightButtonMain.addEventListener('click', () => {
 function findChilds(id) {
     return global.inputArray.filter(person => person.parent === id);
 }
+
 // Возвращаем массив государств
 function findStates() {
     return global.inputArray.filter(state => !state.parent);
@@ -77,7 +84,7 @@ function findStates() {
 
 function addPersonCard(element, div, isState) {
     const newDivCard = document.createElement('div');
-    newDivCard.className = 'mini-card';
+    newDivCard.className = 'mini-card mini-card--not-start';
 
     const newDivPic = document.createElement('div');
     newDivPic.className = 'pic-div';
@@ -87,7 +94,7 @@ function addPersonCard(element, div, isState) {
     newImg.className = "mini-card-image";
     if (isState)
         newImg.classList.add("mini-card-image--state");
-        
+
     newImg.addEventListener('click', () => {
         transformState(element);
     });
@@ -134,21 +141,20 @@ function goHome() {
         descriptionText.remove();
 
     // Удаляем жезл снизу
-    const rod = document.getElementById('rod');
+    const rod = document.getElementsByClassName('rod')[0];
     if (rod)
         rod.style.display = 'none';
 
     pic.src = 'main/main-1024.svg';
     pic.className = 'startMainPicture';
-    const divRow = document.getElementById('row-childs');
-    divRow.classList.add('childs-row--start');
-    divRow.classList.remove('childs-row--not-start');
-    // Удаление всех элементов из div с помощью innerHTML
-    divRow.innerHTML = "";
-    const states = findStates();
-    states.forEach(element => {
-        addPersonCard(element, divRow, true);
-    });
+
+    divRowStart.style.display = 'flex';
+    divRowStart.style.position = 'relative';
+
+    divRowNotStart.style.display = 'none';
+    divRowNotStart.style.position = 'absolute';
+
+    mainRow.className = 'main-row main-row--start';
 }
 
 // Делаем другого персонажа основным
@@ -196,16 +202,21 @@ function transformState(obj) {
     }
     newSpanDescription.textContent = obj.post;
 
-    const divRow = document.getElementById('row-childs');
-    divRow.classList.remove('childs-row--start');
-    divRow.classList.add('childs-row--not-start');
     // Удаление всех элементов из div с помощью innerHTML
-    divRow.innerHTML = "";
+    divRowNotStart.innerHTML = "";
     const childs = findChilds(obj.id);
     addElementsForWhoHasChildren(childs.length, parent === null, divMain);
     childs.forEach(element => {
-        addPersonCard(element, divRow);
+        addPersonCard(element, divRowNotStart);
     });
+
+    divRowStart.style.display = 'none';
+    divRowStart.style.position = 'ansolute';
+
+    divRowNotStart.style.display = 'flex';
+    divRowNotStart.style.position = 'relative';
+
+    mainRow.className = 'main-row main-row--not-start';
 }
 
 //Добавляем иконку
@@ -231,7 +242,7 @@ function addIcon(countOfChildren, div, iconDivId) {
 }
 
 // Добавляем или удаляем элементы в зависимости от кол-ва детей
-function addElementsForWhoHasChildren(countOfChildren, isState, divMain) {
+function addElementsForWhoHasChildren(countOfChildren, isState) {
     let removeIcon = () => {
         const iconDiv = document.getElementById('icon-div');
         if (iconDiv)
@@ -240,16 +251,16 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain) {
     // Если это государство, то удаляем иконку
     if (isState)
         removeIcon();
+    const rod = document.getElementsByClassName('rod')[0];
     if (!countOfChildren) {
-        const rod = document.getElementById('rod');
         if (rod)
             rod.style.display = 'none';
         removeIcon();
     }
     else {
-        if (document.getElementById('rod')) {
+        if (rod) {
             // Отображаем жезл после главного окна
-            document.getElementById('rod').style.display = 'block';
+            rod.style.display = 'block';
         }
         if (isState)
             return;
@@ -257,7 +268,7 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain) {
         if (!iconDiv) {
             iconDiv = document.createElement('div');
             iconDiv.id = 'icon-div';
-            document.getElementById('main-pic-div').appendChild(iconDiv);
+            document.getElementsByClassName('main-card_pic')[0].appendChild(iconDiv);
             addIcon(countOfChildren, iconDiv, 'main-icon-div');
         }
         else {

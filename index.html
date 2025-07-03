@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="adaptive.css">
     <link rel="icon" href="main/main-1024.png" type="image/x-icon">
+
 <body>
     <div class="container">
         <div class='back-button-container'>
@@ -15,11 +16,11 @@
             <div class="underline"></div>
         </div>
         <div id="main-card">
-            <div class="row main-row">
+            <div class="row main-row main-row--start">
                 <button id="left-arrow" class="image-button">
                     <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
                 </button>
-                <div id = 'main-pic-div'>
+                <div class='main-card_pic'>
                     <img id="main-pic" src="main/main-1024.svg" alt="lala" class="startMainPicture">
                 </div>
                 <button id="right-arrow" class="image-button">
@@ -30,23 +31,23 @@
         <button id="right-button" class="image-button">
             <img src="buttons/logoStart.png" alt="Кнопка" class="corner-image" />
         </button>
-    <div id="forRod" style = 'display: flex; justify-content: center;'>
-        <div id="rod"></div>
-    </div>
-    <div id="row-childs" class="row childs-row">
-        <div class="mini-card">
-            <img id=1 src="images/nilfgaard.jpg" alt="Nilfgaard" class="mini-card-image mini-card-image--state">
-            <span class="mini-card-name" class="text">Nilfgaard</span>
+        <div class="rod" style='display: none; justify-content: center;'>
         </div>
-        <div class="mini-card">
-            <img id=2 src="images/redania.jpg" alt="Redania" class="mini-card-image mini-card-image--state">
-            <span class="mini-card-name" class="text">Redania</span>
+        <div class="row childs-row childs-row--start">
+            <div class="mini-card">
+                <img id=1 src="images/nilfgaard.jpg" alt="Nilfgaard" class="mini-card-image mini-card-image--state">
+                <span class="mini-card-name" class="text">Nilfgaard</span>
+            </div>
+            <div class="mini-card">
+                <img id=2 src="images/redania.jpg" alt="Redania" class="mini-card-image mini-card-image--state">
+                <span class="mini-card-name" class="text">Redania</span>
+            </div>
+            <div class="mini-card">
+                <img id=3 src="images/skellige.jpg" alt="Skellige" class="mini-card-image mini-card-image--state">
+                <span class="mini-card-name" class="text">Skellige</span>
+            </div>
         </div>
-        <div class="mini-card">
-            <img id=3 src="images/skellige.jpg" alt="Skellige" class="mini-card-image mini-card-image--state">
-            <span class="mini-card-name" class="text">Skellige</span>
-        </div>
-    </div>
+        <div class="row childs-row childs-row--not-start" style="position: absolute;"></div>
     </div>
     <script src="input.js"></script>
     <script src="main.js"></script>

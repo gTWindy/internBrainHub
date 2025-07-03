@@ -1,8 +1,7 @@
 body {
     margin: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgb(12, 12, 12);
+    width: 99vw;
+    min-height: 100vh;
     background-image: url('bg/bg-1440.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -11,6 +10,11 @@ body {
 
 .container {
     text-align: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
 }
 
 .image-button {
@@ -121,26 +125,17 @@ body {
 .main-row {
     display: flex;
     align-items: center;
-    width: 100%;
-    margin-top: 67px;
-}
-
-/*Левая стрелочка*/
-#left-arrow {
-    margin-left: 7vw;
-    margin-right: 10px;
-
+    justify-content: space-between;
+    width: 572px;
 }
 
 /*Правая стрелочка*/
 #right-arrow {
     transform: rotate(180deg);
-    margin-left: 10px;
-    margin-right: 7vw;
 }
 
 /*Контейнер для хранения картинки вместе с иконкой*/
-#main-pic-div {
+.main-card_pic {
     position: relative;
 }
 
@@ -181,12 +176,14 @@ body {
 
 /*Имя главной карточки */
 #main-text {
+    margin-top: 34px;
     font-size: 61px;
 }
 
 /*Описание главной карточки */
 #description-text {
     font-size: 17px;
+    margin-top: 21px;
 }
 
 /*Текст числа детей*/
@@ -195,31 +192,35 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 29px;
 }
 
 /*Жезл между родителем и его детьми*/
-#rod {
-    display: none;
+.rod {
     background-image: url('main/rod-big.png');
     width: 13px;
     height: 130px;
-    margin-top: 3vw;
+    margin-top: 66px;
 }
 
 /*Контейнер для мини карточек снизу*/
 .childs-row {
     flex-wrap: wrap;
-    margin-top: 4vw;
+    gap: 111px;
 }
 
 /*Контейнер для мини карточек снизу при старте*/
 .childs-row--start {
     gap: 10vw;
+    margin-top: 98px;
+    margin-bottom: 113px;
 }
 
 /*Контейнер для мини карточек снизу не при старте*/
 .childs-row--not-start {
-    gap: 5vw;
+    gap: 20px;
+    margin-bottom: 193px;
+    margin-top: 76px;
 }
 
 /*Контейнер одной мини карточки*/
@@ -227,6 +228,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.mini-card--not-start {
+    width: 280px;
+    height: 352px;
+    align-self: center;
+    flex-grow: 0;
 }
 
 /*Картинки персонажей в мини карточках*/
@@ -253,8 +261,15 @@ body {
     background-clip: text;
     text-decoration: underline;
     font-family: 'Crimson Text', serif;
-    font-size: 26px;
-    margin-top: 40px;
+    font-size: 32px;
+}
+
+.childs-row--not-start .mini-card-name {
+    margin-top: 48px;
+}
+
+.childs-row--start .mini-card-name {
+    margin-top: 29px;
 }
 
 /*Описание мини карточки*/

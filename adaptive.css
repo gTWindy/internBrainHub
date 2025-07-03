@@ -9,9 +9,23 @@
         top: 85px;
     }
 
-    #row-childs {
-        margin-top: 77;
+    .childs-row--start {
+        margin-top: 77px;
         gap: 44px;
+    }
+
+    .childs-row--not-start {
+        margin-top: 76px;
+        gap: 21px;
+    }
+
+    .mini-card--not-start {
+        width: 225px;
+        height: 352px;
+    }
+
+    .mini-card-description {
+        margin-top: 10px;
     }
 }
 
@@ -20,20 +34,37 @@
         background-image: url('bg/bg-768.png');
     }
 
-    .startMainPicture {
-        max-width: 444px;
-        max-height: 401px;
+    .main-row {
         margin-top: 123px;
     }
 
-    #row-childs {
-        margin-top: 2vw;
+    .startMainPicture {
+        max-width: 444px;
+        max-height: 401px;
+    }
+
+    .childs-row {
+        margin-top: 113px;
+        margin-bottom: 127px;
+    }
+
+    .childs-row--not-start {
+        margin-bottom: 162px;
+    }
+
+    .text-icon-number {
+        font-size: 29px;
     }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 580px) {
     body {
         background-image: url('bg/bg-320.png');
+    }
+
+    .main-row {
+        min-width: 320px;
+        width: 98vw;
     }
 
     .back-button-container {
@@ -52,11 +83,30 @@
     .notStartMainPicture {
         width: 66vw;
     }
+
+    /*Стрелочки по бокам от главной карточки*/
+    .image-button .button-arrow {
+        width: 38px;
+        height: 38px;
+    }
 }
 
 @media (max-width: 320px) {
     .body {
         background-size: 320px auto;
+    }
+
+    .main-row {
+        min-width: 262px;
+        width: 262px;
+    }
+
+    .main-row--start {
+        margin-top: 60px;
+    }
+
+    .main-row--not-start {
+        margin-top: 86px;
     }
 
     .back-button-container {
@@ -111,15 +161,21 @@
         font-size: 19;
     }
 
-    #rod {
+    .rod {
         background-image: url('main/rod-mini.svg');
         height: 55px;
         margin-top: 5vw;
     }
 
-    #row-childs {
-        margin-top: 5vw;
-        gap: 5px;
+    .childs-row--not-start {
+        margin-top: 19px;
+        gap: 15px;
+    }
+
+    .mini-card--not-start {
+        padding-top: 29px;
+        width: 133px;
+        height: 224px;
     }
 
     .mini-card-image {
@@ -129,5 +185,10 @@
 
     .mini-card-name {
         margin-top: 23px;
+        font-size: 19px;
+    }
+
+    .childs-row--not-start .mini-card-name {
+        margin-top: 14px;
     }
 }
