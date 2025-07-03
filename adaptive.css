@@ -166,10 +166,15 @@
         height: 55px;
         margin-top: 5vw;
     }
+    
+    .childs-row--start {
+        margin-bottom: 70px;
+    }
 
     .childs-row--not-start {
         margin-top: 19px;
         gap: 15px;
+        margin-bottom: 41px;
     }
 
     .mini-card--not-start {

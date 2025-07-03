@@ -129,6 +129,15 @@ body {
     width: 572px;
 }
 
+.main-row--start {
+    margin-top: 102px;
+}
+
+.main-row--not-start {
+    margin-top: 67px;
+}
+
+
 /*Правая стрелочка*/
 #right-arrow {
     transform: rotate(180deg);
