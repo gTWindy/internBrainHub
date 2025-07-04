@@ -1,22 +1,29 @@
 let parent = null;
 let currentId = -1;
+const divRowStart = document.getElementsByClassName('childs-row--start')[0];
+const divRowNotStart = document.createElement('div');
+divRowNotStart.className = 'row childs-row childs-row--not-start';
+const mainCardPic = document.getElementsByClassName('main-card__pic')[0];
+const mainRow = document.getElementsByClassName('main-row')[0];
 
 function updateArrowVisibility(isNotVisible) {
-    const leftArrow = document.getElementById('left-arrow');
-    const rightArrow = document.getElementById('right-arrow');
+    const leftArrow = document.getElementsByClassName('image-button_left-arrow')[0];
+    const rightArrow = document.getElementsByClassName('image-button_right-arrow')[0];
 
     if (isNotVisible) {
-        leftArrow.style.visibility = 'visible';
-        rightArrow.style.visibility = 'visible';
+        leftArrow.style.display = 'block';
+        rightArrow.style.display = 'block';
+        mainRow.style.justifyContent = 'space-between';
     } else {
-        leftArrow.style.visibility = 'hidden';
-        rightArrow.style.visibility = 'hidden';
+        leftArrow.style.display = 'none';
+        rightArrow.style.display = 'none';
+        mainRow.style.justifyContent = 'center'
     }
 }
 
 function updateButtonVisibility(isNotVisible) {
-    const leftButton = document.getElementById('left-button');
-    const rightButton = document.getElementById('right-button');
+    const leftButton = document.getElementsByClassName('back-button__left-button')[0];
+    const rightButton = document.getElementsByClassName('image-button__right-button')[0];
 
     if (isNotVisible) {
         leftButton.style.display = 'block';
@@ -31,78 +38,64 @@ function updateButtonVisibility(isNotVisible) {
 // Вызов функции для обновления видимости кнопок
 updateButtonVisibility(false);
 
-//Добавляем прослушку
-const rightButton = document.getElementById('right-button');
+// Добавляем прослушку
+const rightButton = document.getElementsByClassName('image-button__right-button')[0];
 rightButton.addEventListener('click', goHome);
 
-const leftButton = document.getElementById('left-button');
-leftButton.addEventListener('click', ()=>{
+const leftButton = document.getElementsByClassName('back-button__left-button')[0];
+leftButton.addEventListener('click', () => {
     parent ? transformState(parent) : goHome();
 });
 
 // Функция параллельного поиска
-function parallelTransition(isLeft)
-{
-    console.log('1');
-
-    if (isLeft)
-        add = -1;
-    else
-        add = 1;
+function parallelTransition(isLeft) {
+    const add = isLeft ? - 1 : 1;
 
     const startIndex = global.inputArray.findIndex(element => element.id === currentId);
     let currentIndex = (startIndex + add) % global.inputArray.length;
 
-    let cicle = function()
-    {
-        for (let i = 1; i < global.inputArray.length; i++) 
-        {
-            // Вычисляем текущий индекс с учетом остатка
-            currentIndex = (startIndex + i * add + global.inputArray.length) % global.inputArray.length;
-            if (global.inputArray[currentIndex].parent === (parent ? parent.id : undefined))
-            {
-                transformState(global.inputArray[currentIndex]);
-                break;
-            }
+    for (let i = 1; i < global.inputArray.length; i++) {
+        // Вычисляем текущий индекс с учетом остатка
+        currentIndex = (startIndex + i * add + global.inputArray.length) % global.inputArray.length;
+        if (global.inputArray[currentIndex].parent === (parent ? parent.id : undefined)) {
+            transformState(global.inputArray[currentIndex]);
+            break;
         }
     }
-    cicle();
-
 }
 
-//Добавляем прослушку
-const leftButtonMain = document.getElementById('left-arrow');
-leftButtonMain.addEventListener('click', ()=>{
+// Добавляем прослушку
+const leftButtonMain = document.getElementsByClassName('image-button_left-arrow')[0];
+leftButtonMain.addEventListener('click', () => {
     parallelTransition(true);
 });
-const rightButtonMain = document.getElementById('right-arrow');
-rightButtonMain.addEventListener('click', ()=>{
+const rightButtonMain = document.getElementsByClassName('image-button_right-arrow')[0];
+rightButtonMain.addEventListener('click', () => {
     parallelTransition(false);
 });
 
-function findChilds(id)
-{
+function findChilds(id) {
     return global.inputArray.filter(person => person.parent === id);
 }
-function findStates()
-{
+
+// Возвращаем массив государств
+function findStates() {
     return global.inputArray.filter(state => !state.parent);
 }
 
-function addPersonCard(element, div, isState)
-{
+function addPersonCard(element, div, isState) {
     const newDivCard = document.createElement('div');
-    newDivCard.className = 'card-block';
-    
+    newDivCard.className = 'mini-card mini-card--not-start';
+
     const newDivPic = document.createElement('div');
     newDivPic.className = 'pic-div';
 
     const newImg = document.createElement('img');
     newImg.src = 'images/' + element.image;
+    newImg.className = "mini-card-image";
     if (isState)
-        newImg.className = "state-image";
-    else
-        newImg.className = "mini-card-image";
+        newImg.classList.add("mini-card-image--state");
+
     newImg.addEventListener('click', () => {
         transformState(element);
     });
@@ -110,22 +103,20 @@ function addPersonCard(element, div, isState)
     childCardPicDiv.style.position = 'relative';
     newDivCard.appendChild(childCardPicDiv);
     childCardPicDiv.appendChild(newImg);
-    
+
     let newSpan = document.createElement('span');
     newSpan.className = 'mini-card-name';
     newSpan.textContent = element.name;
     newDivCard.appendChild(newSpan);
 
-    if (element.post)
-    {
+    if (element.post) {
         newSpan = document.createElement('span');
         newSpan.className = 'mini-card-description';
         newSpan.textContent = element.post;
         newDivCard.appendChild(newSpan);
     }
 
-    if(!isState)
-    {
+    if (!isState) {
         const countOfChildren = findChilds(element.id).length;
         if (countOfChildren)
             addIcon(countOfChildren, childCardPicDiv);
@@ -135,12 +126,11 @@ function addPersonCard(element, div, isState)
 }
 
 // Переходим на начальную страницу
-function goHome()
-{
+function goHome() {
     updateButtonVisibility(false);
     addElementsForWhoHasChildren(0);
     let pic = document.getElementById('main-pic');
-    
+
     //Удаляем имя снизу
     const mainText = document.getElementById('main-text');
     if (mainText)
@@ -151,34 +141,30 @@ function goHome()
     if (descriptionText)
         descriptionText.remove();
 
-    //Удаляем жезл снизу
-    const rod = document.getElementById('rod');
+    // Удаляем жезл снизу
+    const rod = document.getElementsByClassName('rod')[0];
     if (rod)
         rod.style.display = 'none';
 
     pic.src = 'main/main-1024.svg';
     pic.className = 'startMainPicture';
-    const divRow = document.getElementById('row-childs');
-    divRow.style.gap = '10vw';
-    // Удаление всех элементов из div с помощью innerHTML
-    divRow.innerHTML = "";
-    const states = findStates();
-    states.forEach(element => {
-        addPersonCard(element, divRow, true);
-    });
+
+    
+    document.body.removeChild(divRowNotStart);
+    document.body.appendChild(divRowStart);
+
+    mainRow.className = 'main-row main-row--start';
 }
 
-//Делаем другого персонажа основным
-function transformState(obj)
-{
-    //Добавляем кнопки сверху по краям
+// Делаем другого персонажа основным
+function transformState(obj) {
+    // Добавляем кнопки сверху по краям
     updateButtonVisibility(true);
 
     // Запоминаем текущий id
     currentId = obj.id;
 
-    if (!obj)
-    {
+    if (!obj) {
         console.log('Не найден')
         return;
     }
@@ -195,45 +181,46 @@ function transformState(obj)
     pic.src = 'images/' + obj.image;
     pic.className = 'notStartMainPicture';
 
-    //Имя карточки
+    // Имя карточки
     let newSpanMain = document.getElementById('main-text');
-    if (!newSpanMain)
-    {
+    if (!newSpanMain) {
         newSpanMain = document.createElement('span');
         newSpanMain.className = 'text';
         newSpanMain.id = 'main-text';
-        document.getElementById('main-card').appendChild(newSpanMain);
+        document.getElementsByClassName('main-card')[0].appendChild(newSpanMain);
     }
     newSpanMain.textContent = obj.name;
 
-    //Описание карточки
+    // Описание карточки
     let newSpanDescription = document.getElementById('description-text');
-    if (!newSpanDescription)
-    {
+    if (!newSpanDescription) {
         newSpanDescription = document.createElement('span');
         newSpanDescription.className = 'text';
         newSpanDescription.id = 'description-text';
-        document.getElementById('main-card').appendChild(newSpanDescription);
+        document.getElementsByClassName('main-card')[0].appendChild(newSpanDescription);
     }
     newSpanDescription.textContent = obj.post;
-     
-    const divRow = document.getElementById('row-childs');
-    divRow.style.gap = '5vw';
+
     // Удаление всех элементов из div с помощью innerHTML
-    divRow.innerHTML = "";
+    divRowNotStart.innerHTML = "";
     const childs = findChilds(obj.id);
     addElementsForWhoHasChildren(childs.length, parent === null, divMain);
     childs.forEach(element => {
-        addPersonCard(element, divRow);
+        addPersonCard(element, divRowNotStart);
     });
+
+    document.body.removeChild(divRowStart);
+    document.body.appendChild(divRowNotStart);
+
+    mainRow.className = 'main-row main-row--not-start';
 }
 
-/*Добавляем иконку*/
+//Добавляем иконку
 function addIcon(countOfChildren, div, iconDivId) {
     const newIconDiv = document.createElement('div');
     newIconDiv.className = 'icon';
 
-    if(iconDivId)
+    if (iconDivId)
         newIconDiv.id = iconDivId;
 
     const newIconPic = document.createElement('img');
@@ -250,44 +237,37 @@ function addIcon(countOfChildren, div, iconDivId) {
     div.appendChild(newIconDiv);
 }
 
-//Добавляем или удаляем элементы в зависимости от кол-ва детей
-function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
-{
-    let removeIcon = ()=>
-    {
+// Добавляем или удаляем элементы в зависимости от кол-ва детей
+function addElementsForWhoHasChildren(countOfChildren, isState) {
+    let removeIcon = () => {
         const iconDiv = document.getElementById('icon-div');
         if (iconDiv)
             iconDiv.remove();
     }
-    //Если это государство, то удаляем иконку
+    // Если это государство, то удаляем иконку
     if (isState)
         removeIcon();
-    if (!countOfChildren)
-    {
-        const rod = document.getElementById('rod');
+    const rod = document.getElementsByClassName('rod')[0];
+    if (!countOfChildren) {
         if (rod)
-            rod.style.display='none';
+            rod.style.display = 'none';
         removeIcon();
     }
-    else
-    {
-        if (document.getElementById('rod'))
-        {
+    else {
+        if (rod) {
             // Отображаем жезл после главного окна
-            document.getElementById('rod').style.display = 'block';
+            rod.style.display = 'block';
         }
         if (isState)
             return;
         let iconDiv = document.getElementById('icon-div');
-        if (!iconDiv)
-        {
+        if (!iconDiv) {
             iconDiv = document.createElement('div');
             iconDiv.id = 'icon-div';
-            document.getElementById('main-pic-div').appendChild(iconDiv);
+            mainCardPic.appendChild(iconDiv);
             addIcon(countOfChildren, iconDiv, 'main-icon-div');
         }
-        else
-        {
+        else {
             const countOfChildrenText = iconDiv.getElementsByTagName('span')[0];
             countOfChildrenText.textContent = countOfChildren;
         }
@@ -295,11 +275,10 @@ function addElementsForWhoHasChildren(countOfChildren, isState, divMain)
     }
 }
 
-//Прячем стрелочки, если у карточки не братьев
-function hideArrows()
-{
+// Прячем стрелочки, если у карточки не братьев
+function hideArrows() {
     if (!parent)
-        return updateArrowVisibility(false);
+        return updateArrowVisibility(true);
 
     const condition = (element) => element.parent === parent.id;
     const count = global.inputArray.reduce((acc, element) => {
@@ -313,18 +292,20 @@ function hideArrows()
 
 }
 
-for (let i = 1; i <= 3; i++) 
-{
-    const pic = document.getElementById(i);
-    const obj = global.inputArray.find((element, index, array) => {
-        return element.id === i;
-    });
-    if (obj) 
-        {
-        pic.addEventListener('click', () => {
-            transformState(obj);
+// Добавляем прослушку после загрузки DOM
+function initStartStates() {
+    for (const state of findStates()) {
+        const miniCard_image = document.getElementById(state.id);
+        miniCard_image.addEventListener('click', () => {
+            transformState(state);
         });
-    } 
-    else 
-        console.error(`Element with id ${i} not found in global.inputArray`);
+    }
+}
+
+if (document.readyState === "loading") {
+    // Загрузка ещё не закончилась
+    document.addEventListener("DOMContentLoaded", initStartStates);
+} else {
+    // `DOMContentLoaded` Уже сработал
+    initStartStates();
 }
