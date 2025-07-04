@@ -1,7 +1,7 @@
 body {
     margin: 0;
     width: 99vw;
-    min-height: 100vh;
+    
     background-image: url('bg/bg-1440.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -204,7 +204,7 @@ body {
 .rod {
     background-image: url('main/rod-big.png');
     width: 13px;
-    height: 130px;
+    height: 131px;
     margin-top: 66px;
 }
 

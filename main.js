@@ -1,7 +1,8 @@
 let parent = null;
 let currentId = -1;
 const divRowStart = document.getElementsByClassName('childs-row--start')[0];
-const divRowNotStart = document.getElementsByClassName('childs-row--not-start')[0];
+const divRowNotStart = document.createElement('div');
+divRowNotStart.className = 'row childs-row childs-row--not-start';
 const mainCardPic = document.getElementsByClassName('main-card__pic')[0];
 const mainRow = document.getElementsByClassName('main-row')[0];
 
@@ -148,11 +149,9 @@ function goHome() {
     pic.src = 'main/main-1024.svg';
     pic.className = 'startMainPicture';
 
-    divRowStart.style.display = 'flex';
-    divRowStart.style.position = 'relative';
-
-    divRowNotStart.style.display = 'none';
-    divRowNotStart.style.position = 'absolute';
+    
+    document.body.removeChild(divRowNotStart);
+    document.body.appendChild(divRowStart);
 
     mainRow.className = 'main-row main-row--start';
 }
@@ -210,11 +209,8 @@ function transformState(obj) {
         addPersonCard(element, divRowNotStart);
     });
 
-    divRowStart.style.display = 'none';
-    divRowStart.style.position = 'ansolute';
-
-    divRowNotStart.style.display = 'flex';
-    divRowNotStart.style.position = 'relative';
+    document.body.removeChild(divRowStart);
+    document.body.appendChild(divRowNotStart);
 
     mainRow.className = 'main-row main-row--not-start';
 }

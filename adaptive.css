@@ -166,16 +166,17 @@
 
     .rod {
         background-image: url('main/rod-mini.svg');
-        height: 55px;
+        height: 57px;
         margin-top: 5vw;
     }
     
     .childs-row--start {
+        margin-top: 59px;
         margin-bottom: 70px;
     }
 
     .childs-row--not-start {
-        margin-top: 19px;
+        margin-top: 17px;
         gap: 15px;
         margin-bottom: 41px;
     }
@@ -198,5 +199,9 @@
 
     .childs-row--not-start .mini-card-name {
         margin-top: 14px;
+    }
+
+    .text-icon-number {
+        font-size: 14px;
     }
 }
