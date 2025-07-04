@@ -3,23 +3,23 @@
         background-image: url('bg/bg-1024.png');
     }
 
-    .startMainPicture {
+    .main-card__pic_start {
         max-width: 284px;
         max-height: 257px;
         top: 85px;
     }
 
-    .childs-row--start {
+    .childs-row__start {
         margin-top: 77px;
         gap: 44px;
     }
 
-    .childs-row--not-start {
+    .childs-row__not-start {
         margin-top: 76px;
         gap: 21px;
     }
 
-    .mini-card--not-start {
+    .mini-card__not-start {
         width: 228px;
     }
 
@@ -37,7 +37,7 @@
         margin-top: 123px;
     }
 
-    .startMainPicture {
+    .main-card__pic_start {
         max-width: 444px;
         max-height: 401px;
     }
@@ -47,11 +47,11 @@
         margin-bottom: 127px;
     }
 
-    .childs-row--not-start {
+    .childs-row__not-start {
         margin-bottom: 162px;
     }
 
-    .mini-card--not-start {
+    .mini-card__not-start {
         width: 234px;
     }
 
@@ -78,12 +78,12 @@
         top: 7vw;
     }
 
-    .startMainPicture {
+    .main-card__pic_start {
         width: 80vw;
         height: auto;
     }
 
-    .notStartMainPicture {
+    .main-card__pic_not-start {
         width: 66vw;
     }
 
@@ -104,11 +104,11 @@
         width: 262px;
     }
 
-    .main-row--start {
+    .main-row__start {
         margin-top: 60px;
     }
 
-    .main-row--not-start {
+    .main-row__not-start {
         margin-top: 86px;
     }
 
@@ -129,12 +129,12 @@
         height: 36px;
     }
 
-    .startMainPicture {
+    .main-card__pic_start {
         max-width: 202px;
         max-height: 181px;
     }
 
-    .notStartMainPicture {
+    .main-card__pic_not-start {
         max-width: 168px;
         max-height: 168px;
     }
@@ -170,34 +170,34 @@
         margin-top: 5vw;
     }
     
-    .childs-row--start {
+    .childs-row__start {
         margin-top: 59px;
         margin-bottom: 70px;
     }
 
-    .childs-row--not-start {
+    .childs-row__not-start {
         margin-top: 17px;
         gap: 15px;
         margin-bottom: 41px;
     }
 
-    .mini-card--not-start {
+    .mini-card__not-start {
         padding-top: 29px;
         width: 133px;
         height: 223px;
     }
 
-    .mini-card-image {
+    .mini-card__image {
         max-width: 120px;
         max-height: 120px;
     }
 
-    .mini-card-name {
+    .mini-card__name {
         margin-top: 23px;
         font-size: 19px;
     }
 
-    .childs-row--not-start .mini-card-name {
+    .childs-row__not-start .mini-card__name {
         margin-top: 14px;
     }
 

@@ -1,14 +1,14 @@
 let parent = null;
 let currentId = -1;
-const divRowStart = document.getElementsByClassName('childs-row--start')[0];
+const divRowStart = document.getElementsByClassName('childs-row__start')[0];
 const divRowNotStart = document.createElement('div');
-divRowNotStart.className = 'row childs-row childs-row--not-start';
-const mainCardPic = document.getElementsByClassName('main-card__pic')[0];
+divRowNotStart.className = 'row childs-row childs-row__not-start';
+const mainCardPic = document.getElementsByClassName('main-card')[0];
 const mainRow = document.getElementsByClassName('main-row')[0];
 
 function updateArrowVisibility(isNotVisible) {
-    const leftArrow = document.getElementsByClassName('image-button_left-arrow')[0];
-    const rightArrow = document.getElementsByClassName('image-button_right-arrow')[0];
+    const leftArrow = document.getElementsByClassName('image-button__left-arrow')[0];
+    const rightArrow = document.getElementsByClassName('image-button__right-arrow')[0];
 
     if (isNotVisible) {
         leftArrow.style.display = 'block';
@@ -65,11 +65,11 @@ function parallelTransition(isLeft) {
 }
 
 // Добавляем прослушку
-const leftButtonMain = document.getElementsByClassName('image-button_left-arrow')[0];
+const leftButtonMain = document.getElementsByClassName('image-button__left-arrow')[0];
 leftButtonMain.addEventListener('click', () => {
     parallelTransition(true);
 });
-const rightButtonMain = document.getElementsByClassName('image-button_right-arrow')[0];
+const rightButtonMain = document.getElementsByClassName('image-button__right-arrow')[0];
 rightButtonMain.addEventListener('click', () => {
     parallelTransition(false);
 });
@@ -85,16 +85,16 @@ function findStates() {
 
 function addPersonCard(element, div, isState) {
     const newDivCard = document.createElement('div');
-    newDivCard.className = 'mini-card mini-card--not-start';
+    newDivCard.className = 'mini-card mini-card__not-start';
 
     const newDivPic = document.createElement('div');
     newDivPic.className = 'pic-div';
 
     const newImg = document.createElement('img');
     newImg.src = 'images/' + element.image;
-    newImg.className = "mini-card-image";
+    newImg.className = "mini-card__image";
     if (isState)
-        newImg.classList.add("mini-card-image--state");
+        newImg.classList.add("mini-card__image_state");
 
     newImg.addEventListener('click', () => {
         transformState(element);
@@ -105,7 +105,7 @@ function addPersonCard(element, div, isState) {
     childCardPicDiv.appendChild(newImg);
 
     let newSpan = document.createElement('span');
-    newSpan.className = 'mini-card-name';
+    newSpan.className = 'mini-card__name';
     newSpan.textContent = element.name;
     newDivCard.appendChild(newSpan);
 
@@ -147,13 +147,13 @@ function goHome() {
         rod.style.display = 'none';
 
     pic.src = 'main/main-1024.svg';
-    pic.className = 'startMainPicture';
+    pic.className = 'main-card__pic_start';
 
     
     document.body.removeChild(divRowNotStart);
     document.body.appendChild(divRowStart);
 
-    mainRow.className = 'main-row main-row--start';
+    mainRow.className = 'main-row main-row__start';
 }
 
 // Делаем другого персонажа основным
@@ -179,7 +179,7 @@ function transformState(obj) {
     const pic = document.getElementById('main-pic');
     console.log(pic);
     pic.src = 'images/' + obj.image;
-    pic.className = 'notStartMainPicture';
+    pic.className = 'main-card__pic_not-start';
 
     // Имя карточки
     let newSpanMain = document.getElementById('main-text');
@@ -187,7 +187,7 @@ function transformState(obj) {
         newSpanMain = document.createElement('span');
         newSpanMain.className = 'text';
         newSpanMain.id = 'main-text';
-        document.getElementsByClassName('main-card')[0].appendChild(newSpanMain);
+        document.getElementsByClassName('main-block')[0].appendChild(newSpanMain);
     }
     newSpanMain.textContent = obj.name;
 
@@ -197,7 +197,7 @@ function transformState(obj) {
         newSpanDescription = document.createElement('span');
         newSpanDescription.className = 'text';
         newSpanDescription.id = 'description-text';
-        document.getElementsByClassName('main-card')[0].appendChild(newSpanDescription);
+        document.getElementsByClassName('main-block')[0].appendChild(newSpanDescription);
     }
     newSpanDescription.textContent = obj.post;
 
@@ -212,7 +212,7 @@ function transformState(obj) {
     document.body.removeChild(divRowStart);
     document.body.appendChild(divRowNotStart);
 
-    mainRow.className = 'main-row main-row--not-start';
+    mainRow.className = 'main-row main-row__not-start';
 }
 
 //Добавляем иконку
