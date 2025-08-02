@@ -15,12 +15,18 @@
         <div class="underline"></div>
     </div>
     <div class="main-block">
-        <div class="row main-row main-row__start">
+        <div class="row main-row">
             <button class="image-button image-button__left-arrow">
                 <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
             </button>
             <div class='main-card'>
-                <img id="main-pic" src="main/main-1024.svg" alt="Main picture" class="main-card__pic_start">
+                <img id="main-pic" alt="Main picture">
+                <span class="text main-text"></span>
+                <span class="text description-text"></span>
+                <div class="icon main-icon-div">
+                    <img src="buttons/icon_number.png">
+                    <span class='text text-icon-number'>
+                </div>
             </div>
             <button class="image-button image-button__right-arrow">
                 <img src="buttons/arrow.svg" alt="Кнопка" class="button-arrow" />
@@ -33,23 +39,12 @@
     <div class="rod" style='display: none; justify-content: center;'>
     </div>
     <div class="row childs-row childs-row__start">
-        <div class="mini-card">
-            <img id=1 src="images/nilfgaard.jpg" alt="Nilfgaard" class="mini-card__image mini-card__image_state">
-            <span class="mini-card__name" class="text">Nilfgaard</span>
-        </div>
-        <div class="mini-card">
-            <img id=2 src="images/redania.jpg" alt="Redania" class="mini-card__image mini-card__image_state">
-            <span class="mini-card__name" class="text">Redania</span>
-        </div>
-        <div class="mini-card">
-            <img id=3 src="images/skellige.jpg" alt="Skellige" class="mini-card__image mini-card__image_state">
-            <span class="mini-card__name" class="text">Skellige</span>
-        </div>
     </div>
-    
 
-    <script src="input.js"></script>
-    <script src="main.js"></script>
+    <script src="scripts/input.js"></script>
+    <script src="scripts/elements.js"></script>
+    <script src="scripts/personController.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>

@@ -59,6 +59,7 @@ body {
     cursor: pointer;
     padding: 0;
     margin: 0;
+    font-family: 'Crimson Text', serif;
     font-size: 26px;
 }
 
@@ -138,6 +139,9 @@ body {
 /*Контейнер для хранения картинки вместе с иконкой*/
 .main-card {
     position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 /*Клас главной стартовой картинки*/
@@ -170,19 +174,19 @@ body {
 }
 
 /*Контейнер с иконкой для главной карточки*/
-#main-icon-div {
+.main-icon-div {
     top: 85%;
     left: 12%;
 }
 
 /*Имя главной карточки */
-#main-text {
+.main-text {
     margin-top: 34px;
     font-size: 61px;
 }
 
 /*Описание главной карточки */
-#description-text {
+.description-text {
     font-size: 17px;
     margin-top: 21px;
 }
